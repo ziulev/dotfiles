@@ -24,25 +24,24 @@
  "*****************************************************************************
  Plug 'scrooloose/nerdtree'
  Plug 'tpope/vim-commentary'
- Plug 'tpope/vim-fugitive'
- Plug 'airblade/vim-gitgutter'
- Plug 'vim-scripts/grep.vim'
- Plug 'w0rp/ale'
- Plug 'sheerun/vim-polyglot'
- Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
+ " Plug 'tpope/vim-fugitive'
+ " Plug 'airblade/vim-gitgutter'
+ " Plug 'vim-scripts/grep.vim'
+ " Plug 'w0rp/ale'
+ " Plug 'sheerun/vim-polyglot'
+ " Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
  Plug 'yuttie/comfortable-motion.vim'
  Plug 'Asheq/close-buffers.vim'
  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
  Plug 'junegunn/fzf.vim'
  Plug 'Shougo/vimproc.vim', {'do' : 'make'}
  Plug 'tpope/vim-surround'
- Plug 'mileszs/ack.vim'
- Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
+ " Plug 'mileszs/ack.vim'
  Plug 'itchyny/lightline.vim'
  Plug 'niklaas/lightline-gitdiff'
  Plug 'mengelbrecht/lightline-bufferline'
  Plug 'christoomey/vim-conflicted'
- Plug 'idanarye/vim-merginal'
+ " Plug 'idanarye/vim-merginal'
  Plug 'mhinz/vim-startify'
  Plug 'neoclide/coc.nvim', {'branch': 'release'}
  Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
@@ -106,6 +105,21 @@ colorscheme onedark
 " Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 set termguicolors
 
+set nobackup
+set nowritebackup
+
+" Better display for messages
+set cmdheight=2
+
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" always show signcolumns
+set signcolumn=yes
+
 
 "*****************************************************************************
 "" Mappings
@@ -153,7 +167,7 @@ function! s:GrepFromSelected(type)
 endfunction
 
 " Buffer nav
-noremap <leader>w :CloseThisBuffer<CR>
+noremap <leader>w :Bdelete this<CR>
 noremap <Tab> :bn<CR>
 noremap <S-Tab> :bp<CR>
 nmap <Leader>1 <Plug>lightline#bufferline#go(1)
@@ -187,15 +201,30 @@ vnoremap K :m '<-2<CR>gv=gv
 " Better exit instert mode jj
 inoremap jj <ESC>
 
-" Go to Definition
-nnoremap <silent> <leader>d :ALEGoToDefinitionInTab<CR>
-
 " TSU import
 nnoremap <silent> <leader>i :TsuImport<CR>
 
 " Autocomplete navigation
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Remap keys for gotos
+nmap <silent> <leader>d <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Manage extensions
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
 
 
 " ============================================================================ "
@@ -237,4 +266,3 @@ let g:lightline.component_type          = {'buffers': 'tabsel', 'gitdiff': 'midd
 let g:lightline#bufferline#shorten_path = 0
 let g:lightline#bufferline#unnamed      = '[No Name]'
 
-" autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()

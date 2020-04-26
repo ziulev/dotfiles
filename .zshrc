@@ -27,7 +27,7 @@ alias rmodules="rm -rf node_modules"
 alias gpl="git pull --rebase"
 alias p="npm publish"
 alias i="npm i"
-alias s="npm start"
+alias s="clear && npm start"
 alias is="npm i && npm start"
 alias ps="npm publish && npm start"
 alias b="npm run build"
@@ -43,6 +43,13 @@ alias vi="nvim"
 alias oni2='/Applications/Onivim2.app/Contents/MacOS/Oni2'
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g;'
+
+# Empty the Trash on all mounted volumes and the main HDD.
+# Also, clear Apple’s System Logs to improve shell startup speed.
+# Finally, clear download history from quarantine. https://mths.be/bum
+alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
 
 plugins=(
   git
@@ -86,3 +93,11 @@ if [ -f /Users/denis/.tnsrc ]; then
     source /Users/denis/.tnsrc 
 fi
 ###-tns-completion-end-###
+
+# Autorun tmux
+if [ -z "$TMUX" ]
+then
+    tmux attach -t TMUX || tmux new -s TMUX
+fi
+
+bindkey -v

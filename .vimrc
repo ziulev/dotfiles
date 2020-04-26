@@ -24,7 +24,7 @@
  "*****************************************************************************
  Plug 'scrooloose/nerdtree'
  Plug 'tpope/vim-commentary'
- " Plug 'tpope/vim-fugitive'
+ Plug 'tpope/vim-fugitive'
  " Plug 'airblade/vim-gitgutter'
  " Plug 'vim-scripts/grep.vim'
  " Plug 'w0rp/ale'
@@ -89,6 +89,7 @@ set clipboard=unnamed
 set noswapfile
 
 syntax on
+syntax sync fromstart
 set ruler
 set number
 set relativenumber
@@ -105,7 +106,7 @@ colorscheme onedark
 " Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 set termguicolors
 
-set nobackup
+" set nobackup
 set nowritebackup
 
 " Better display for messages
@@ -131,40 +132,25 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 
 " Git fugitive
+noremap <Leader>gs :Gstatus<CR>
 noremap <Leader>ga :Gwrite<CR>
 noremap <Leader>gc :Gcommit<CR>
 noremap <Leader>gp :Gpush<CR>
 noremap <Leader>gl :Gpull<CR>
-noremap <Leader>gs :Gstatus<CR>
 noremap <Leader>gb :Gblame<CR>
-noremap <Leader>gd :Gvdiff<CR>
+" noremap <Leader>gd :Gvdiff<CR>
 noremap <Leader>gr :Gremove<CR>
 
+" navigate git chunks of current buffer
+nmap [g <Plug>(coc-git-prevchunk)
+nmap ]g <Plug>(coc-git-nextchunk)
+
 " TS fix problems
-nnoremap <silent> <Leader>f :<C-u>CocCommand tsserver.executeAutofix<CR>
+nnoremap <silent> <Leader>fi :<C-u>CocCommand tsserver.executeAutofix<CR>
 
 " Clap
 nnoremap <silent> <space>p :<C-u>Clap files<CR>
 nnoremap <silent> <space>b :<C-u>Clap buffers<CR>
-
-" Global find
-vnoremap <leader>f :<C-u>call <SID>GrepFromSelected(visualmode())<CR>
-nnoremap <leader>f :<C-u>set operatorfunc=<SID>GrepFromSelected<CR>g@
-
-function! s:GrepFromSelected(type)
- let saved_unnamed_register = @@
- if a:type ==# 'v'
-   normal! `<v`>y
- elseif a:type ==# 'char'
-   normal! `[v`]y
- else
-   return
- endif
- let word = substitute(@@, '\n$', '', 'g')
- let word = escape(word, '| ')
- let @@ = saved_unnamed_register
- execute 'CocList grep '.word
-endfunction
 
 " Buffer nav
 noremap <leader>w :Bdelete this<CR>
@@ -225,6 +211,33 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Manage extensions
 nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+
+" Global find
+nnoremap <silent> <leader>F :exe 'CocList -I --input='.expand('<cword>').' grep'<CR>
+command! -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList grep '.<q-args>
+function! s:GrepArgs(...)
+  let list = ['-S', '-smartcase', '-i', '-ignorecase', '-w', '-word',
+        \ '-e', '-regex', '-u', '-skip-vcs-ignores', '-t', '-extension']
+  return join(list, "\n")
+endfunction
+
+" Buffer find
+nnoremap <silent> <leader>f  :exe 'CocList -I --normal --input='.expand('<cword>').' words'<CR>
+
+" Smart F
+nmap f <Plug>(coc-smartf-forward)
+nmap F <Plug>(coc-smartf-backward)
+nmap ; <Plug>(coc-smartf-repeat)
+nmap , <Plug>(coc-smartf-repeat-opposite)
+augroup Smartf
+  autocmd User SmartfEnter :hi Conceal ctermfg=220 guifg=#6638F0
+  autocmd User SmartfLeave :hi Conceal ctermfg=239 guifg=#504945
+augroup end
+
+" Fugitive Conflict Resolution
+nnoremap <leader>gd :Gvdiff<CR>
+nnoremap gdh :diffget //2<CR>
+nnoremap gdl :diffget //3<CR>
 
 
 " ============================================================================ "

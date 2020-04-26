@@ -1,0 +1,309 @@
+{
+  "workbench.sideBar.location": "right",
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false,
+  "git.autofetch": true,
+  "workbench.editor.tabCloseButton": "off",
+  "editor.tabSize": 2,
+  "color-highlight.markerType": "underline",
+  "cSpell.language": "en,ru",
+  "gitlens.advanced.messages": {
+    "suppressFileNotUnderSourceControlWarning": true
+  },
+  "editor.multiCursorModifier": "ctrlCmd",
+  "javascript.validate.enable": false,
+  "workbench.startupEditor": "newUntitledFile",
+  "terminal.integrated.fontFamily": "Inconsolata-g for Powerline",
+  "editor.fontFamily": "Iosevka Type",
+  "editor.fontSize": 14,
+  "workbench.activityBar.visible": false,
+  "workbench.colorTheme": "Plastic",
+  "editor.minimap.enabled": false,
+  "city-lights-icons-vsc.hidesExplorerArrows": true,
+  "cSpell.userWords": [
+    "Behaviour",
+    "COSF",
+    "Dropdown",
+    "Firestore",
+    "Pomodoro",
+    "Reciept",
+    "Roboto",
+    "Shopsystems",
+    "Sibiling",
+    "Swiper",
+    "Telegraf",
+    "Untouch",
+    "antd",
+    "apexlend",
+    "appspot",
+    "arrowdown",
+    "arrowup",
+    "asof",
+    "autosize",
+    "bank",
+    "behaviours",
+    "browserslist",
+    "captcha",
+    "citi",
+    "clonedeep",
+    "codelyzer",
+    "commerceos",
+    "contenteditable",
+    "cosmowords",
+    "creditcards",
+    "crossorigin",
+    "datepicker",
+    "daterangepicker",
+    "debouncer",
+    "deletable",
+    "devkit",
+    "devpayever",
+    "devtools",
+    "dockerode",
+    "docusign",
+    "dropzone",
+    "drppicker",
+    "dt",
+    "esign",
+    "fico",
+    "fieldsets",
+    "fullscreen",
+    "gitlens",
+    "gmail",
+    "hammerjs",
+    "icns",
+    "iefix",
+    "injectable",
+    "inkl",
+    "jasminewd",
+    "keyframes",
+    "keypress",
+    "keyvalue",
+    "mailoffers",
+    "mailto",
+    "minmax",
+    "mixins",
+    "mlab",
+    "music",
+    "nestjs",
+    "ng",
+    "ngsw",
+    "notbarber",
+    "npmrc",
+    "opentype",
+    "packagr",
+    "paginator",
+    "payever",
+    "piis",
+    "playsinline",
+    "polyfill",
+    "polyfills",
+    "prebuilt",
+    "precommit",
+    "preload",
+    "prettierrc",
+    "prismjs",
+    "provisionprofile",
+    "recaptcha",
+    "rxweb",
+    "scrollbar",
+    "scytec",
+    "selectall",
+    "sidenav",
+    "sortby",
+    "spectron",
+    "splitted",
+    "styleext",
+    "stylesheet",
+    "submenu",
+    "sufix",
+    "tabindex",
+    "tabset",
+    "targetted",
+    "theming",
+    "togglefullscreen",
+    "truetype",
+    "truthy",
+    "tslib",
+    "uname",
+    "unarchive",
+    "uncommented",
+    "upprove",
+    "upproved",
+    "validators",
+    "videogular",
+    "videojs",
+    "visibilitychange",
+    "wallpapper",
+    "woff",
+    "wordlist",
+    "wordspace",
+    "xlink",
+    "yandex",
+    "youtu",
+    "youtube",
+    "zipcodes",
+    "zorro",
+    "zyulev",
+    "zzulev",
+    "валидную",
+    "закопличен",
+    "закопличены",
+    "отрисовки",
+    "сaching",
+    "стримы",
+    "таргетированный",
+    "эмит",
+    "эмиты"
+  ],
+  "workbench.editor.highlightModifiedTabs": true,
+  "window.nativeTabs": true,
+  "emmet.syntaxProfiles": {
+    "html": {
+      "filters": "html, bem"
+    }
+  },
+  "gitlens.codeLens.recentChange.enabled": false,
+  "gitlens.codeLens.authors.enabled": false,
+  "workbench.panel.defaultLocation": "right",
+  "terminal.integrated.fontWeightBold": "normal",
+  "terminal.integrated.scrollback": 10000,
+  "editor.cursorBlinking": "solid",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": false,
+    "source.organizeImports": false
+  },
+  "editor.fontLigatures": true,
+  "editor.wordWrapColumn": 120,
+  "files.exclude": {
+    "**/.vscode": true
+  },
+  "editor.folding": false,
+  "extensions.ignoreRecommendations": true,
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "javascript.implicitProjectConfig.experimentalDecorators": true,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": [
+        "j",
+        "j"
+      ],
+      "after": [
+        "<Esc>"
+      ]
+    }
+  ],
+  "vim.leader": "<space>",
+  "vim.sneak": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.highlightedyank.enable": true,
+  "vim.easymotion": true,
+  "vim.hlsearch": true,
+  "workbench.editor.enablePreview": false,
+  "editor.lineNumbers": "relative",
+  "files.autoSave": "onFocusChange",
+  "tslint.jsEnable": true,
+  "tslint.alwaysShowRuleFailuresAsWarnings": true,
+  "explorer.confirmDragAndDrop": false,
+  "zenMode.hideStatusBar": false,
+  "zenMode.hideActivityBar": false,
+  "zenMode.hideTabs": false,
+  "zenMode.restore": true,
+  "vim.statusBarColorControl": false,
+  "gitlens.views.repositories.location": "explorer",
+  "workbench.statusBar.visible": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "gitPrefix.replacement": "$1: ",
+  "gaac.replacePatternWith": [
+    {
+      "pattern": "/^.editorconfig/",
+      "with": "editorconfig"
+    },
+    {
+      "pattern": "/^.gitignore/",
+      "with": "git"
+    },
+    {
+      "pattern": "/^.travis/",
+      "with": "travis"
+    },
+    {
+      "pattern": "/^.vscodeignore/",
+      "with": "vscode"
+    },
+    {
+      "pattern": "/^CHANGELOG[^:]*/",
+      "with": "changelog"
+    },
+    {
+      "pattern": "/^Godeps[^:]*/",
+      "with": "godep"
+    },
+    {
+      "pattern": "/^LICENSE[^:]*/",
+      "with": "license"
+    },
+    {
+      "pattern": "/^Makefile[^:]*/i",
+      "with": "makefile"
+    },
+    {
+      "pattern": "/^(npm-shrinkwrap|.npmignore|package(-lock)?)[^:]*/",
+      "with": "npm"
+    },
+    {
+      "pattern": "/^webpack[^:]*/",
+      "with": "webpack"
+    },
+    {
+      "pattern": "/^README[^:]*/",
+      "with": "readme"
+    },
+    {
+      "pattern": "/^src//",
+      "with": ""
+    }
+  ],
+  "gaac.withGuessedCustomActions": [
+    {
+      "action": "ignore",
+      "pattern": "/^.(gitignore|npmignore|vscodeignore)/",
+      "state": "MODIFIED"
+    },
+    {
+      "action": "update",
+      "pattern": "/^CHANGELOG/",
+      "state": "MODIFIED"
+    },
+    {
+      "action": "update",
+      "pattern": "/^LICENSE/",
+      "state": "MODIFIED"
+    },
+    {
+      "action": "update",
+      "pattern": "/^README/",
+      "state": "MODIFIED"
+    }
+  ],
+  "emmet.showExpandedAbbreviation": "never",
+  "emmet.showAbbreviationSuggestions": false,
+  "window.zoomLevel": 0,
+  "vim.camelCaseMotion.enable": true,
+  "vim.changeWordIncludesWhitespace": true,
+  "vim.debug.silent": true,
+  "vim.enableNeovim": true,
+  "vim.foldfix": true,
+  "vim.gdefault": true,
+  "vim.sneakReplacesF": true,
+  "vim.sneakUseIgnorecaseAndSmartcase": true,
+  "vim.overrideCopy": false,
+  "editor.accessibilitySupport": "off",
+  "editor.glyphMargin": false,
+  "todo-tree.tree.showScanModeButton": false,
+  "todo-tree.highlights.enabled": true
+}

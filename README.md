@@ -16,3 +16,16 @@ Prevent untracked files from showing up on dotfiles status.
 ```
 dotfiles config --local status.showUntrackedFiles no
 ```
+
+# Link VSCode
+```
+ln -s ~/VSCode/settings.json ~/Library/Application\ Support/Code/User/settings.json
+```
+
+```
+ln -s ~/VSCode/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
+```
+
+```
+ln -s ~/VSCode/snippets/ ~/Library/Application\ Support/Code/User
+```

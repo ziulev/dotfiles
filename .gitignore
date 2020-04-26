@@ -1,0 +1,7 @@
+# Ignore everything
+*
+
+!.tmux.conf
+!.vimrc
+!.zshrc
+!VSCode

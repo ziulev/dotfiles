@@ -1,4 +1,3 @@
-// Place your key bindings in this file to overwrite the defaults
 [
   {
     "key": "ctrl+l",
@@ -40,18 +39,6 @@
     "command": "-cursorDown",
     "when": "textInputFocus"
   },
-  {
-    "key": "shift+alt+up",
-    "command": "expand_region",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "shift+alt+down",
-    "command": "undo_expand_region",
-    "when": "editorTextFocus && editorHasSelection"
-  },
-  // { "key": "cmd+]", "command": "workbench.action.nextEditor" },
-  // { "key": "cmd+[", "command": "workbench.action.previousEditor" },
   { "key": "cmd+l", "command": "workbench.action.nextEditor" },
   { "key": "cmd+h", "command": "workbench.action.previousEditor" },
   {
@@ -210,22 +197,6 @@
     "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
   },
   {
-    "key": "ctrl+s",
-    "command": "angular-split.execute"
-  },
-  {
-    "key": "cmd+u",
-    "command": "extension.switchTS"
-  },
-  {
-    "key": "cmd+i",
-    "command": "extension.switchTemplate"
-  },
-  {
-    "key": "cmd+o",
-    "command": "extension.switchStyle"
-  },
-  {
     "key": "ctrl+j",
     "command": "selectNextSuggestion",
     "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
@@ -272,19 +243,9 @@
     "when": "editorTextFocus"
   },
   {
-    "key": "cmd+f4",
-    "command": "-extension.node-debug.pickLoadedScript",
-    "when": "debugType == 'node2'"
-  },
-  {
     "key": "f6",
     "command": "-workbench.action.debug.pause",
     "when": "debugState == 'running'"
-  },
-  {
-    "key": "cmd+f4",
-    "command": "-extension.node-debug.pickLoadedScript",
-    "when": "debugType == 'node'"
   },
   {
     "key": "shift+cmd+f5",
@@ -403,10 +364,6 @@
     "command": "-search.action.focusPreviousSearchResult",
     "when": "hasSearchResult"
   },
-  // {
-  //   "key": "shift+cmd+f d",
-  //   "command": "search.action.clearSearchResults"
-  // },
   {
     "key": "shift+cmd+f",
     "command": "workbench.action.findInFiles"

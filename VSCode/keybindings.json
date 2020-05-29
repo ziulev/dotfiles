@@ -385,5 +385,9 @@
   {
     "key": "ctrl+f5",
     "command": "-workbench.action.debug.run"
-  }
+  },
+  {
+    "key": "cmd+g r",
+    "command": "gitlens.toggleFileRecentChanges"
+  },
 ]

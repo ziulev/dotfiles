@@ -46,6 +46,7 @@
  Plug 'neoclide/coc.nvim', {'branch': 'release'}
  Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
  Plug 'joshdick/onedark.vim'
+ Plug 'chaoren/vim-wordmotion'
 
  call plug#end()
 

@@ -33,6 +33,9 @@ alias ps="npm publish && npm start"
 alias b="npm run build"
 alias ib="npm i && npm run build"
 
+# RUST
+alias cr="cargo run"
+
 alias commit="git-smart-commit"
 alias pull="git-smart-pull"
 alias push="git-smart-push seletskiy"
@@ -62,6 +65,8 @@ plugins=(
 )
 
 export UPDATE_ZSH_DAYS=1
+
+source $HOME/.cargo/env
 
 source $ZSH/oh-my-zsh.sh
 ### Added by Zplugin's installer

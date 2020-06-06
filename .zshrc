@@ -33,6 +33,8 @@ alias ps="npm publish && npm start"
 alias b="npm run build"
 alias ib="npm i && npm run build"
 
+alias rm="rm -i"
+
 # RUST
 alias cr="cargo run"
 

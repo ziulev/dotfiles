@@ -29,3 +29,9 @@
  ```
  ln -s ~/VSCode/snippets/ ~/Library/Application\ Support/Code/User
  ```
+
+ # Set global hooks path
+ ```
+ git config --global core.hooksPath ~/.git-templates/hooks
+ ```
+

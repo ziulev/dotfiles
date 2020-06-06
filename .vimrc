@@ -5,7 +5,7 @@
 
  if !filereadable(vimplug_exists)
    if !executable("curl")
-     echoerr "You have to install curl or first install vim-plug yourself!"
+     echoerr "You have to install curl or first install vim-g:clever_f_timeout_msplug yourself!"
      execute "q!"
    endif
    echo "Installing Vim-Plug..."
@@ -22,7 +22,7 @@
  "*****************************************************************************
  "" Plug install packages
  "*****************************************************************************
- Plug 'scrooloose/nerdtree'
+ " Plug 'scrooloose/nerdtree'
  Plug 'tpope/vim-commentary'
  Plug 'tpope/vim-fugitive'
  " Plug 'airblade/vim-gitgutter'
@@ -47,6 +47,7 @@
  Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
  Plug 'joshdick/onedark.vim'
  Plug 'chaoren/vim-wordmotion'
+ Plug 'ryanoasis/vim-devicons'
 
  call plug#end()
 
@@ -122,6 +123,12 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
 
+" MOUSE
+set ttyfast
+set mouse=a
+
+set modifiable
+
 
 "*****************************************************************************
 "" Mappings
@@ -141,17 +148,19 @@ noremap <Leader>gl :Gpull<CR>
 noremap <Leader>gb :Gblame<CR>
 " noremap <Leader>gd :Gvdiff<CR>
 noremap <Leader>gr :Gremove<CR>
-
-" navigate git chunks of current buffer
-nmap [g <Plug>(coc-git-prevchunk)
-nmap ]g <Plug>(coc-git-nextchunk)
-
-" TS fix problems
-nnoremap <silent> <Leader>fi :<C-u>CocCommand tsserver.executeAutofix<CR>
+noremap <leader>gh :diffget //2<CR>
+noremap <leader>gl :diffget //3<CR>
 
 " Clap
+autocmd FileType clap_input inoremap <silent> <buffer> <C-n> <C-R>=clap#navigation#linewise('down')<CR>
+autocmd FileType clap_input inoremap <silent> <buffer> <C-p> <C-R>=clap#navigation#linewise('up')<CR>
+autocmd FileType clap_input inoremap <silent> <buffer> <Esc> <Esc>:call clap#handler#exit()<CR>
 nnoremap <silent> <space>p :<C-u>Clap files<CR>
 nnoremap <silent> <space>b :<C-u>Clap buffers<CR>
+nnoremap <silent> <space>F :<C-u>Clap grep<CR>
+nnoremap <silent> <space>h :<C-u>Clap history<CR>
+nnoremap <silent> <space>y :<C-u>Clap yanks<CR>
+nnoremap <silent> gc :<C-u>Clap git_diff_files<CR>
 
 " Buffer nav
 noremap <leader>w :Bdelete this<CR>
@@ -172,10 +181,10 @@ nmap <Leader>0 <Plug>lightline#bufferline#go(10)
 nnoremap <silent> <leader><space> :noh<cr>
 
 " Split navigation
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+nmap <silent> <c-k> :wincmd k<CR>
+nmap <silent> <c-j> :wincmd j<CR>
+nmap <silent> <c-h> :wincmd h<CR>
+nmap <silent> <c-l> :wincmd l<CR>
 
 " Vmap for maintain Visual Mode after shifting > and <
 vmap < <gv
@@ -195,6 +204,34 @@ nnoremap <silent> <leader>i :TsuImport<CR>
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+
+" -----------------------------------------------------------------------
+" COC remaps
+
+" Git
+nmap [g <Plug>(coc-git-prevchunk)
+nmap ]g <Plug>(coc-git-nextchunk)
+nnoremap <silent> gd :<C-u>Git diff<CR>
+
+" TS fix problems
+nnoremap <silent> <Leader>fi :<C-u>CocCommand tsserver.executeAutofix<CR>
+
+" Remap keys for applying codeAction to the current line.
+nmap <leader>. <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf <Plug>(coc-fix-current)
+
+" Show autocomplete when Tab is pressed
+inoremap <silent><expr> <Tab> coc#refresh()
+
+
+" GoTo code navigation.
+" nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
@@ -211,16 +248,16 @@ nmap <leader>rn <Plug>(coc-rename)
 nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
 
 " Global find
-nnoremap <silent> <leader>F :exe 'CocList -I --input='.expand('<cword>').' grep'<CR>
-command! -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList grep '.<q-args>
-function! s:GrepArgs(...)
-  let list = ['-S', '-smartcase', '-i', '-ignorecase', '-w', '-word',
-        \ '-e', '-regex', '-u', '-skip-vcs-ignores', '-t', '-extension']
-  return join(list, "\n")
-endfunction
+" nnoremap <silent> <leader>F :exe 'CocList -I --input='.expand('<cword>').' grep'<CR>
+" command! -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList grep '.<q-args>
+" function! s:GrepArgs(...)
+"   let list = ['-S', '-smartcase', '-i', '-ignorecase', '-w', '-word',
+"         \ '-e', '-regex', '-u', '-skip-vcs-ignores', '-t', '-extension']
+"   return join(list, "\n")
+" endfunction
 
 " Buffer find
 nnoremap <silent> <leader>f  :exe 'CocList -I --normal --input='.expand('<cword>').' words'<CR>
@@ -231,7 +268,7 @@ nmap F <Plug>(coc-smartf-backward)
 nmap ; <Plug>(coc-smartf-repeat)
 nmap , <Plug>(coc-smartf-repeat-opposite)
 augroup Smartf
-  autocmd User SmartfEnter :hi Conceal ctermfg=220 guifg=#6638F0
+  autocmd User SmartfEnter :hi Conceal ctermfg=220 guifg=#3897f0
   autocmd User SmartfLeave :hi Conceal ctermfg=239 guifg=#504945
 augroup end
 
@@ -240,43 +277,63 @@ nnoremap <leader>gd :Gvdiff<CR>
 nnoremap gdh :diffget //2<CR>
 nnoremap gdl :diffget //3<CR>
 
+"Explorer
+let g:coc_explorer_global_presets = {
+\   '.vim': {
+\      'root-uri': '~/.vim',
+\   },
+\   'floatingRightSide': {
+\      'position': 'floating',
+\      'floating-position': 'right-center',
+\      'floating-width': 75,
+\   },
+\ }
+nmap <space>e :CocCommand explorer --preset floatingRightSide<CR>
+nmap <space>\ :CocCommand explorer --preset floatingRightSide<CR>
 
 " ============================================================================ "
 " ===                           PLUGIN SETUP                               === "
 " ============================================================================ "
 
 " NERDTree configuration
-let g:NERDTreeWinSize = 60
-let g:NERDTreeWinPos = "right"
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
+" let g:NERDTreeWinSize = 60
+" let g:NERDTreeWinPos = "right"
+" set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 
-" Current file NERDtree
-function! NerdTreeToggleFind()
-  if exists("g:NERDTree") && g:NERDTree.IsOpen()
-      NERDTreeClose
-  elseif bufexists(expand('%'))
-      NERDTreeFind
-  else
-      NERDTree
-  endif
-endfunction
-nnoremap <silent>\ :call NerdTreeToggleFind()<CR>
-nnoremap <D-b> :call NerdTreeToggleFind()<CR>
+" " Current file NERDtree
+" function! NerdTreeToggleFind()
+"   if exists("g:NERDTree") && g:NERDTree.IsOpen()
+"       NERDTreeClose
+"   elseif bufexists(expand('%'))
+"       NERDTreeFind
+"   else
+"       NERDTree
+"   endif
+" endfunction
+" nnoremap <silent>\ :call NerdTreeToggleFind()<CR>
+" nnoremap <D-b> :call NerdTreeToggleFind()<CR>
 
-let g:NERDTreeQuitOnOpen = 1
+" let g:NERDTreeQuitOnOpen = 1
 
-nmap <D-B> :NERDTreeToggle<CR>
-let g:NERDTreeMapActivateNode='l'
-autocmd FileType nerdtree nmap <buffer> l o
+" nmap <D-B> :NERDTreeToggle<CR>
+" let g:NERDTreeMapActivateNode='l'
+" autocmd FileType nerdtree nmap <buffer> l o
 
 
 " Lightline
-let g:lightline                         = {}
-let g:lightline.colorscheme             = 'onedark'
-let g:lightline.active                  = {'left': [ [ 'mode', 'paste' ], [ 'readonly', 'modified' ], [ 'gitdiff' ] ]}
-let g:lightline.tabline                 = {'left': [['buffers']], 'right': [['close']]}
-let g:lightline.component_expand        = {'buffers': 'lightline#bufferline#buffers', 'gitdiff': 'lightline#gitdiff#get'}
-let g:lightline.component_type          = {'buffers': 'tabsel', 'gitdiff': 'middle'}
-let g:lightline#bufferline#shorten_path = 0
-let g:lightline#bufferline#unnamed      = '[No Name]'
+let g:lightline                            = {}
+let g:lightline.colorscheme                = 'onedark'
+let g:lightline.active                     = {'left': [ [ 'mode', 'paste' ], [ 'readonly', 'modified' ], [ 'gitdiff' ] ]}
+let g:lightline.tabline                    = {'left': [['buffers']], 'right': [['close']]}
+let g:lightline.component_expand           = {'buffers': 'lightline#bufferline#buffers', 'gitdiff': 'lightline#gitdiff#get'}
+let g:lightline.component_type             = {'buffers': 'tabsel', 'gitdiff': 'middle'}
+let g:lightline#bufferline#shorten_path    = 0
+let g:lightline#bufferline#unnamed         = '[No Name]'
+let g:lightline#bufferline#show_number     = 2
+let g:lightline#bufferline#enable_devicons = 1
+let g:lightline#bufferline#filename_modifier = ':t'
+
+autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
+
+let g:coc_global_config="$HOME/coc-settings.json"
 

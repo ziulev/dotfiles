@@ -4,6 +4,8 @@ export PATH=$HOME/.npm-global/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/.npm-packages/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/Library/Python/2.7/bin:$PATH
+export DISABLE_AUTO_TITLE='true'
 
 export DEFAULT_USER="$(whoami)"
 
@@ -22,28 +24,27 @@ export LANG=en_US.UTF-8
 export NVM_DIR="$HOME/.nvm"
 . "$(brew --prefix nvm)/nvm.sh"
 
+# export TERM="xterm-256color"
+
 alias c="clear"
-alias rmodules="rm -rf node_modules"
+alias rmd="rm -rf node_modules"
 alias gpl="git pull --rebase"
 alias p="npm publish"
 alias i="npm i"
 alias s="clear && npm start"
 alias is="npm i && npm start"
-alias ps="npm publish && npm start"
-alias b="npm run build"
-alias ib="npm i && npm run build"
+alias t="tmuxp load ~/.config/tmux/tmuxp/session.yml"
 
 alias rm="rm -i"
 
 # RUST
-alias cr="cargo run"
+# alias cr="cargo run"
 
-alias commit="git-smart-commit"
-alias pull="git-smart-pull"
-alias push="git-smart-push seletskiy"
+# alias commit="git-smart-commit"
+# alias pull="git-smart-pull"
+# alias push="git-smart-push seletskiy"
 
 alias vim="nvim"
-alias vi="nvim"
 
 alias oni2='/Applications/Onivim2.app/Contents/MacOS/Oni2'
 
@@ -93,7 +94,7 @@ prompt pure
 
 
 # include Z, yo
-# . ~/z.sh
+# . ~/z.sz
 
 ###-tns-completion-start-###
 if [ -f /Users/denis/.tnsrc ]; then 
@@ -102,9 +103,17 @@ fi
 ###-tns-completion-end-###
 
 # Autorun tmux
-if [ -z "$TMUX" ]
-then
-    tmux attach -t TMUX || tmux new -s TMUX
-fi
+# if [ -z "$TMUX" ]
+# then
+#     tmux attach -t TMUX || tmux new -s TMUX
+# fi
 
 bindkey -v
+
+# FZF Moving by ctrl + n
+# bindkey '^[[A' history-beginning-search-backward
+# bindkey '^[[B' history-beginning-search-forward
+
+# Autorun tmux
+t
+

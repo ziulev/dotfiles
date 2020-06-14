@@ -7,5 +7,5 @@
 !VSCode
 !README.md
 !.git-templates/*
-!.config
+!.config/alacritty/*
 

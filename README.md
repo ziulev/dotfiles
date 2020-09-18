@@ -16,6 +16,10 @@
  ```
  dotfiles config --local status.showUntrackedFiles no
  ```
+ 
+ ```
+ ln -s ~/.dotiles/.zshrc ~/.zshrc
+ ```
 
  # Link VSCode
  ```

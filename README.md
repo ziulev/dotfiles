@@ -1,7 +1,7 @@
 # Installation
 
  ```
- git clone git@github.com:jet8a/dotfiles.git
+ git clone git@github.com:jet8a/dotfiles.git .dotfiles
  ```
 
  ```

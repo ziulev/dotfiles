@@ -23,19 +23,14 @@
 
  # Link VSCode
  ```
- ln -s ~/VSCode/settings.json ~/Library/Application\ Support/Code/User/settings.json
+ ln -s ~/.vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
  ```
 
  ```
- ln -s ~/VSCode/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
+ ln -s ~/.vscode/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
  ```
 
  ```
- ln -s ~/VSCode/snippets/ ~/Library/Application\ Support/Code/User
- ```
-
- # Set global hooks path
- ```
- git config --global core.hooksPath ~/.git-templates/hooks
+ ln -s ~/.vscode/snippets/ ~/Library/Application\ Support/Code/User
  ```
 

@@ -4,6 +4,7 @@ export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/.npm-packages/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/Library/Python/2.7/bin:$PATH
+export PATH=$HOME/Library/Python/3.9/bin:$PATH
 export DISABLE_AUTO_TITLE='true'
 
 export DEFAULT_USER="$(whoami)"
@@ -34,7 +35,7 @@ alias p="npm publish"
 alias i="npm i"
 alias s="clear && npm start"
 alias is="npm i && npm start"
-alias t="tmuxp load ~/.config/tmux/tmuxp/session.yml"
+alias t="tmuxp load ~/dev/dotfiles/tmux/session.yml"
 
 alias rm="rm -i"
 
@@ -54,6 +55,8 @@ alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup
 # Also, clear Apple’s System Logs to improve shell startup speed.
 # Finally, clear download history from quarantine. https://mths.be/bum
 alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
+
+alias pip=pip3
 
 # --------------------------------------------------------------------------------------------------
 # Functions

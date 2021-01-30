@@ -1,0 +1,10 @@
+session_name: Session
+windows:
+- window_name: first window
+  layout: tiled
+  panes:
+    - null
+- window_name: second window
+  layout: tiled
+  panes:
+    - null

@@ -8,7 +8,10 @@ BREW_PREFIX=$(brew --prefix)
 brew install bash
 brew install bash-completion2
 
-# Install nodeJS
+# Python
+brew install python
+
+# NodeJS
 brew install nodejs
 
 # Switch to using brew-installed bash as default shell

@@ -1,11 +1,11 @@
-# sh brew.sh
+sh brew.sh
 
-# sh macos.sh
+sh macos.sh
 
-# sh zsh/zsh.sh
+sh zsh/zsh.sh
 
 sh git/git.sh
 
-# sh alacritty/alacritty.sh
+sh alacritty/alacritty.sh
 
-# sh vscode/vscode.sh
+sh vscode/vscode.sh

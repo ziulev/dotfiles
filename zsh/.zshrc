@@ -1,4 +1,3 @@
-# Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 export PATH=$HOME/.npm-global/bin:$PATH
 export PATH=/usr/local/bin:$PATH
@@ -21,11 +20,13 @@ export ANDROID_AVD_HOME=/Users/denis/.android/avd
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-export NVM_DIR="$HOME/.nvm"
-. "$(brew --prefix nvm)/nvm.sh"
+PATH="/usr/local/bin:$PATH"
 
 # export TERM="xterm-256color"
 
+# --------------------------------------------------------------------------------------------------
+# Aliases
+# --------------------------------------------------------------------------------------------------
 alias c="clear"
 alias rmd="rm -rf node_modules"
 alias gpl="git pull --rebase"
@@ -37,14 +38,11 @@ alias t="tmuxp load ~/.config/tmux/tmuxp/session.yml"
 
 alias rm="rm -i"
 
-# RUST
-# alias cr="cargo run"
-
 # alias commit="git-smart-commit"
 # alias pull="git-smart-pull"
 # alias push="git-smart-push seletskiy"
 
-alias vim="nvim"
+# alias vim="nvim"
 
 alias oni2='/Applications/Onivim2.app/Contents/MacOS/Oni2'
 
@@ -57,44 +55,36 @@ alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup
 # Finally, clear download history from quarantine. https://mths.be/bum
 alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
 
-plugins=(
-  git
-  zsh-autosuggestions
-  autojump
-  git-flow
-  alias-tips
-  z
-  autoupdate
-)
+# --------------------------------------------------------------------------------------------------
+# Functions
+# --------------------------------------------------------------------------------------------------
+# Change working directory to the top-most Finder window location
+function cdf() { # short for `cdfinder`
+	cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
+}
 
 export UPDATE_ZSH_DAYS=1
 
-source $HOME/.cargo/env
-
 source $ZSH/oh-my-zsh.sh
-### Added by Zplugin's installer
-source '/Users/denis/.zplugin/bin/zplugin.zsh'
-autoload -Uz _zplugin
-(( ${+_comps} )) && _comps[zplugin]=_zplugin
-### End of Zplugin's installer chunk
 
-source ~/.zplug/init.zsh
-
-zplug "chrissicool/zsh-256color" 
-zplug "zsh-users/zsh-autosuggestions" 
-zplug "djui/alias-tips"
-zplug "smallhadroncollider/antigen-git-rebase"
-zplug load "seletskiy/zsh-git-smart-commands"
-
-PATH="/usr/local/bin:$PATH"
+# --------------------------------------------------------------------------------------------------
+# Plugins
+# --------------------------------------------------------------------------------------------------
+if [ -f ${HOME}/.zplug/init.zsh ]; then
+  source ${HOME}/.zplug/init.zsh
+  zplug "chrissicool/zsh-256color" 
+  zplug "zsh-users/zsh-history-substring-search"
+  zplug "zsh-users/zsh-autosuggestions"
+  zplug "djui/alias-tips"
+  zplug "${HOME}/.zsh/", from:local, use:"mn.zsh-theme", defer:2
+  zplug load
+fi
 
 # THEME
+fpath+=$HOME/.zsh/pure
 autoload -U promptinit; promptinit
 prompt pure
 
-
-# include Z, yo
-# . ~/z.sz
 
 ###-tns-completion-start-###
 if [ -f /Users/denis/.tnsrc ]; then 
@@ -115,5 +105,5 @@ bindkey -v
 # bindkey '^[[B' history-beginning-search-forward
 
 # Autorun tmux
-t
+# t
 

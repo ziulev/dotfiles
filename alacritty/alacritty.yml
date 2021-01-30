@@ -31,20 +31,18 @@ background_opacity: 1.0
 
 font:
   normal:
-    family: "FuraCode Nerd Font"
-    # style: Regular
+    family: "Iosevka"
+    style: Regular
   bold:
-    family: "FuraCode Nerd Font"
-    # style: Bold
+    family: "Iosevka"
+    style: Bold
   italic:
-    family: "FuraCode Nerd Font"
-    # style: Italic
+    family: "Iosevka"
+    style: Italic
   bold_italic:
-    family: "FuraCode Nerd Font"
-    # style: Bold Italic
-
-  # Point size
-  size: 14.0
+    family: "Iosevka"
+    style: Bold Italic
+  size: 13.0
 
   offset:
     x: 0
@@ -65,12 +63,12 @@ font:
 
 window:
   padding:
-    x: 2
-    y: 2
+    x: 5
+    y: 5
   decorations: buttonless
   dimensions:
     columns: 160
-    lines: 48
+    lines: 42
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -95,8 +93,8 @@ key_bindings:
   - { key: C, mods: Command|Shift, action: Copy }
   - { key: Key0, mods: Control, action: ResetFontSize }
   - { key: Equals, mods: Control, action: IncreaseFontSize }
-  - { key: Add, mods: Control, action: IncreaseFontSize }
-  - { key: Subtract, mods: Control, action: DecreaseFontSize }
+  # - { key: Add, mods: Control, action: IncreaseFontSize }
+  # - { key: Subtract, mods: Control, action: DecreaseFontSize }
   - { key: Minus, mods: Control, action: DecreaseFontSize }
   - { key: N, mods: Command, action: SpawnNewInstance }
   - { key: D,     mods: Command,       chars: "\x06\x76" }
@@ -105,4 +103,3 @@ key_bindings:
   - { key: J, mods: Control, action: ScrollPageDown, mode: ~Alt }
 
 hide_cursor_when_typing: false
-

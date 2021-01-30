@@ -14,7 +14,7 @@
   "javascript.validate.enable": false,
   "workbench.startupEditor": "newUntitledFile",
   "terminal.integrated.fontFamily": "Inconsolata-g for Powerline",
-  "editor.fontFamily": "Iosevka Type",
+  "editor.fontFamily": "Iosevka",
   "editor.fontSize": 14,
   "workbench.activityBar.visible": false,
   "workbench.colorTheme": "Plastic",

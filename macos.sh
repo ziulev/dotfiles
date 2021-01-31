@@ -79,6 +79,9 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bo
 # Set the timezone; see `sudo systemsetup -listtimezones` for other values
 sudo systemsetup -settimezone "Europe/Brussels" > /dev/null
 
+# Mouse speed TODO: Check does it work or not
+defaults write -g com.apple.trackpad.scaling 5.0
+
 ###############################################################################
 # Energy saving
 ###############################################################################

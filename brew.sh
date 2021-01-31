@@ -41,3 +41,10 @@ if brew list --cask telegram >/dev/null 2>&1; then
 else
   brew install --cask telegram
 fi
+
+# Bitwarden
+if brew list --cask bitwarden >/dev/null 2>&1; then
+  echo "Bitwarden has been already installed, skipping installation"
+else
+  brew install --cask bitwarden
+fi

@@ -2,7 +2,11 @@
 dotfiles_dir=~/dev/dotfiles
 
 # Install
-brew install git
+if brew --version >/dev/null 2>&1; then
+  echo "Git has been already installed, skipping installation"
+else
+  brew install git
+fi
 
 # Symlinks
 read -r -p "Do you want to overwrite git user config? [y|n] " configresponse

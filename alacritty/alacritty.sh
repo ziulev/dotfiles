@@ -2,7 +2,11 @@
 dotfiles_dir=~/dev/dotfiles
 
 # Install
-brew install --cask alacritty
+if brew list --cask alacritty >/dev/null 2>&1; then
+  echo "Alacritty has been already installed, skipping installation"
+else
+  brew install --cask alacritty
+fi
 
 # Alacritty
 read -r -p "Do you want to overwrite alacritty user config? [y|n] " configresponse

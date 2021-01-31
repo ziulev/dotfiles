@@ -2,10 +2,19 @@
 dotfiles_dir=~/dev/dotfiles
 
 # Install
-brew install tmux
+if tmux -V >/dev/null 2>&1; then
+  echo "tmux has been already installed, skipping installation"
+else
+  brew install tmux
+fi
 
 # Sessions
-pip3 install --user tmuxp
+if tmuxp -V >/dev/null 2>&1; then
+  echo "tmux has been already installed, skipping installation"
+else
+  echo "TEST211111111111"
+  pip3 install --user tmuxp
+fi
 
 # Symlinks
 read -r -p "Do you want to overwrite tmux user config? [y|n] " configresponse

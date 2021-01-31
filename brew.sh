@@ -1,31 +1,36 @@
-# Install homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# Save Homebrew’s installed location.
-BREW_PREFIX=$(brew --prefix)
-
-# Install a modern version of Bash.
-brew install bash
-brew install bash-completion2
+# Homebrew
+if brew -v >/dev/null 2>&1; then
+  echo "Homebrew has been already installed, skipping installation"
+else
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
 
 # Python
-brew install python
+if python -V >/dev/null 2>&1; then
+  echo "Python has been already installed, skipping installation"
+else
+  brew install python
+fi
 
-# NodeJS
-brew install nodejs
-
-# Switch to using brew-installed bash as default shell
-if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
-  echo "${BREW_PREFIX}/bin/bash" | sudo tee -a /etc/shells;
-  chsh -s "${BREW_PREFIX}/bin/bash";
-fi;
-
-# Install vim
-brew install vim --with-override-system-vi
+# Node
+if node -v >/dev/null 2>&1; then
+  echo "Node has been already installed, skipping installation"
+else
+  brew install nodejs
+fi
 
 # Fonts
-brew tap homebrew/cask-fonts
-brew install --cask font-iosevka
+if brew list --cask font-iosevka >/dev/null 2>&1; then
+  echo "Font iosevka has been already installed, skipping installation"
+else
+  brew tap homebrew/cask-fonts
+  brew install --cask font-iosevka
+fi
 
-# Remove outdated versions from the cellar.
-brew cleanup
+# Spotter
+if brew list --cask spotter >/dev/null 2>&1; then
+  echo "Spotter has been already installed, skipping installation"
+else
+  brew install --cask spotter
+  osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/spotter.app", hidden:false}'
+fi

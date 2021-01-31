@@ -34,3 +34,10 @@ else
   brew install --cask spotter
   osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/spotter.app", hidden:false}'
 fi
+
+# Telegram
+if brew list --cask telegram >/dev/null 2>&1; then
+  echo "Telegram has been already installed, skipping installation"
+else
+  brew install --cask telegram
+fi

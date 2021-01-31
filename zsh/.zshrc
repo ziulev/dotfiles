@@ -74,12 +74,23 @@ source $ZSH/oh-my-zsh.sh
 # Plugins
 # --------------------------------------------------------------------------------------------------
 if [ -f ${HOME}/.zplug/init.zsh ]; then
+
   source ${HOME}/.zplug/init.zsh
   zplug "chrissicool/zsh-256color" 
-  zplug "zsh-users/zsh-history-substring-search"
-  zplug "zsh-users/zsh-autosuggestions"
+
+  zplug "zsh-users/zsh-completions",              defer:0
+  zplug "zsh-users/zsh-autosuggestions",          defer:2, on:"zsh-users/zsh-completions"
+  zplug "zsh-users/zsh-history-substring-search", defer:3, on:"zsh-users/zsh-syntax-highlighting"
+
   zplug "djui/alias-tips"
   zplug "${HOME}/.zsh/", from:local, use:"mn.zsh-theme", defer:2
+
+  # Install plugins if there are plugins that have not been installed
+  if ! zplug check; then
+    zplug install
+  fi
+
+  # Load everything
   zplug load
 fi
 

@@ -2,16 +2,15 @@
 dotfiles_dir=~/dev/dotfiles
 
 # Install
-if zsh --version >/dev/null 2>&1; then
-  echo "zsh has been already installed, skipping installation"
+if [[ -f "$HOME/.oh-my-zsh" ]]; then
+  echo "oh-my-zsh has been already installed, skipping installation"
 else
-  brew install zsh
-  # sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+  chsh -s $(which zsh)
 fi
 
-
 # Install plugin manager
-if zplug --version >/dev/null 2>&1; then
+if [[ -f "$HOME/.zplug" ]]; then
   echo "zplug has been already installed, skipping installation"
 else
   curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh

@@ -12,7 +12,6 @@ fi
 if tmuxp -V >/dev/null 2>&1; then
   echo "tmux has been already installed, skipping installation"
 else
-  echo "TEST211111111111"
   pip3 install --user tmuxp
 fi
 

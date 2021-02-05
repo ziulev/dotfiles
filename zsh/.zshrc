@@ -21,6 +21,9 @@ export ANDROID_AVD_HOME=/Users/denis/.android/avd
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
 PATH="/usr/local/bin:$PATH"
 
 # export TERM="xterm-256color"
@@ -35,7 +38,7 @@ alias p="npm publish"
 alias i="npm i"
 alias s="clear && npm start"
 alias is="npm i && npm start"
-alias t="tmuxp load ~/dev/dotfiles/tmux/session.yml"
+alias t="tmux attach || tmuxp load ~/dev/dotfiles/tmux/session.yml"
 
 alias rm="rm -i"
 
@@ -119,5 +122,6 @@ bindkey -v
 # bindkey '^[[B' history-beginning-search-forward
 
 # Autorun tmux
-# t
+t
 
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

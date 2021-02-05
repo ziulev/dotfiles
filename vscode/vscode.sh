@@ -32,6 +32,7 @@ if [[ $? -eq 0 ]];then
   code --install-extension EmberTooling.vscode-ember
   code --install-extension streetsidesoftware.code-spell-checker
   code --install-extension EditorConfig.EditorConfig
+  code --install-extension eamodio.gitlens
   echo "Extensions for VSC have been installed"
 
 else

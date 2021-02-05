@@ -1,9 +1,10 @@
 session_name: Session
 windows:
-- window_name: first window
+- window_name: incircles-frontend
   layout: tiled
   panes:
-    - null
+    - shell_command:
+        - cd /dev/incircles-frontend
 - window_name: second window
   layout: tiled
   panes:

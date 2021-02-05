@@ -403,9 +403,7 @@ let g:startify_bookmarks = [
             \ { 'v': '~/.vimrc' },
             \ { 'z': '~/.zshrc' },
             \ { 's': '~/.config/tmux/tmuxp/session.yml' },
-            \ '~/dev/payever/builder-editor',
-            \ '~/dev/payever/builder-client',
-            \ '~/dev/payever/commerceos',
+            \ '~/dev/incircles-frontend.git'
             \ ]
 
 let g:startify_session_autoload = 1

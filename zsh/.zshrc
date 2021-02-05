@@ -46,7 +46,8 @@ alias rm="rm -i"
 # alias pull="git-smart-pull"
 # alias push="git-smart-push seletskiy"
 
-# alias vim="nvim"
+alias vim="nvim"
+alias v="nvim"
 
 alias oni2='/Applications/Onivim2.app/Contents/MacOS/Oni2'
 

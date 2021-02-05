@@ -419,7 +419,7 @@ let g:startify_enable_special = 0
 " Coc
 "*****************************************************************************
 
-let g:coc_global_config="$HOME/coc-settings.json"
+" let g:coc_global_config="$HOME/coc-settings.json"
 
 " Git
 nmap [g <Plug>(coc-git-prevchunk)
@@ -523,4 +523,3 @@ map N <Plug>(is-nohl)<Plug>(anzu-N-with-echo)
 
 " statusline
 " set statusline=%{anzu#search_status()}
-

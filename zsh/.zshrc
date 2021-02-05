@@ -38,7 +38,7 @@ alias p="npm publish"
 alias i="npm i"
 alias s="clear && npm start"
 alias is="npm i && npm start"
-alias t="tmux attach || tmuxp load ~/dev/dotfiles/tmux/session.yml"
+alias t="tmux attach -t TMUX || tmuxp load ~/dev/dotfiles/tmux/session.yml"
 
 alias rm="rm -i"
 
@@ -112,7 +112,7 @@ fi
 # Autorun tmux
 # if [ -z "$TMUX" ]
 # then
-#     tmux attach -t TMUX || tmux new -s TMUX
+# tmux attach -t TMUX || tmux new -s TMUX
 # fi
 
 bindkey -v
@@ -120,8 +120,5 @@ bindkey -v
 # FZF Moving by ctrl + n
 # bindkey '^[[A' history-beginning-search-backward
 # bindkey '^[[B' history-beginning-search-forward
-
-# Autorun tmux
-t
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

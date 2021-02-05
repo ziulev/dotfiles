@@ -494,9 +494,9 @@ let g:coc_explorer_global_presets = {
 nmap <space>e :CocCommand explorer --preset floating<CR>
 nmap <space>\ :CocCommand explorer --open-action-strategy previousWindow --position right<CR>
 
-hi! DiffAdd ctermbg=green ctermfg=green guibg=none guifg=#2e7d32
-hi! DiffChange ctermbg=yellow ctermfg=yellow guibg=none guifg=#ff8f00
-hi! DiffDelete ctermbg=red ctermfg=red guibg=none guifg=#e57373
+hi! DiffAdd ctermbg=green ctermfg=green guibg=NONE guifg=#2e7d32
+hi! DiffChange ctermbg=yellow ctermfg=yellow guibg=NONE guifg=#ff8f00
+hi! DiffDelete ctermbg=red ctermfg=red guibg=NONE guifg=#e57373
 
 " Remap for do codeAction of selected region
 function! s:cocActionsOpenFromSelected(type) abort

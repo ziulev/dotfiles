@@ -31,16 +31,16 @@ background_opacity: 1.0
 
 font:
   normal:
-    family: "Iosevka"
+    family: "Iosevka nerd font"
     style: Regular
   bold:
-    family: "Iosevka"
+    family: "Iosevka nerd font"
     style: Bold
   italic:
-    family: "Iosevka"
+    family: "Iosevka nerd font"
     style: Italic
   bold_italic:
-    family: "Iosevka"
+    family: "Iosevka nerd font"
     style: Bold Italic
   size: 13.0
 

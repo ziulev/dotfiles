@@ -27,6 +27,27 @@ else
   brew install --cask font-iosevka
 fi
 
+if brew list --cask font-iosevka-nerd-font >/dev/null 2>&1; then
+  echo "Iosevka nerd font has been already installed, skipping installation"
+else
+  brew tap homebrew/cask-fonts
+  brew install --cask font-iosevka-nerd-font
+fi
+
+# Fzf
+if brew list fzf >/dev/null 2>&1; then
+  echo "Fzf has been already installed, skipping installation"
+else
+  brew install fzf
+fi
+
+# Ripgrep (need for fzf vim plugin)
+if brew list ripgrep >/dev/null 2>&1; then
+  echo "Ripgrep  has been already installed, skipping installation"
+else
+  brew install ripgrep
+fi
+
 # Spotter
 if brew list --cask spotter >/dev/null 2>&1; then
   echo "Spotter has been already installed, skipping installation"

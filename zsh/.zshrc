@@ -123,3 +123,5 @@ bindkey -v
 # bindkey '^[[B' history-beginning-search-forward
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

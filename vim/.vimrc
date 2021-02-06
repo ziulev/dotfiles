@@ -26,8 +26,11 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'Asheq/close-buffers.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
+
+Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
+Plug 'junegunn/fzf.vim' " needed for previews
+Plug 'antoinemadec/coc-fzf'
+
 Plug 'stsewd/fzf-checkout.vim'
 Plug 'airblade/vim-rooter'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
@@ -44,10 +47,14 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'cohama/lexima.vim'
 Plug 'axelf4/vim-strip-trailing-whitespace'
 Plug 'alvan/vim-closetag'
-Plug 'Valloric/MatchTagAlways'
+
+" Plug 'Valloric/MatchTagAlways'
 " Plug 'evindor/vim-rusmode'
+"
 Plug 'haya14busa/is.vim'
 Plug 'osyo-manga/vim-anzu'
+Plug 'eugen0329/vim-esearch' "<leader>ff
+
 
 call plug#end()
 
@@ -232,7 +239,9 @@ inoremap <silent> <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <silent> <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 " Paste in a new line
-nmap p :pu<CR>
+" nmap p :pu<CR>
+" 'p' to paste, 'gv' to re-select what was originally selected. 'y' to copy it again
+xnoremap p :pu pgvy
 
 " TODO
 nnoremap <Leader>R

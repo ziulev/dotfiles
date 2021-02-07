@@ -120,6 +120,9 @@ fi
 
 bindkey -v
 
+bindkey "^P" up-line-or-search
+bindkey "^N" down-line-or-search
+
 # FZF Moving by ctrl + n
 # bindkey '^[[A' history-beginning-search-backward
 # bindkey '^[[B' history-beginning-search-forward

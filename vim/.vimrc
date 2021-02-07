@@ -241,9 +241,9 @@ inoremap <silent> <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <silent> <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 " Paste in a new line
-" nmap p :pu<CR>
+nmap p :pu<CR>
 " 'p' to paste, 'gv' to re-select what was originally selected. 'y' to copy it again
-xnoremap p :pu pgvy
+" xnoremap p :pu pgvy
 
 " TODO
 nnoremap <Leader>R

@@ -5,7 +5,7 @@
 
 " if !filereadable(vimplug_exists)
 "  if !executable("curl")
-"    echoerr "You have to install curl or first install vim-g:clever_f_timeout_msplug yourself!"
+"    echoerr "You have to install curl or first install vim-g:clever_f_timeout_plug yourself!"
 "    execute "q!"
 "  endif
 "  echo "Installing Vim-Plug..."
@@ -30,6 +30,7 @@ Plug 'Asheq/close-buffers.vim'
 Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
 Plug 'junegunn/fzf.vim' " needed for previews
 Plug 'antoinemadec/coc-fzf'
+Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release/rpc' }
 
 Plug 'stsewd/fzf-checkout.vim'
 Plug 'airblade/vim-rooter'
@@ -48,7 +49,7 @@ Plug 'cohama/lexima.vim'
 Plug 'axelf4/vim-strip-trailing-whitespace'
 Plug 'alvan/vim-closetag'
 
-" Plug 'Valloric/MatchTagAlways'
+" Plug 'Caloric/MatchTagAlways'
 " Plug 'evindor/vim-rusmode'
 "
 Plug 'haya14busa/is.vim'
@@ -191,18 +192,17 @@ syntax sync fromstart
 "     endif
 " endfu
 
-" cnoremap <silent> q<CR>  :call ConfirmQuit(0)<CR>
 " cnoremap <silent> x<CR>  :call ConfirmQuit(1)<CR>
+" cnoremap <silent> q<CR>  :call ConfirmQuit(0)<CR>
 
 " Fix for search and replace
 " :Ag foo
-" https://github.com/junegunn/fzf.vim/issues/528
-if has('nvim')
-  tnoremap <a-a> <esc>a
-  tnoremap <a-b> <esc>b
-  tnoremap <a-d> <esc>d
-  tnoremap <a-f> <esc>f
-endif
+" if has('nvim')
+"   tnoremap <a-a> <esc>a
+"   tnoremap <a-b> <esc>b
+"   tnoremap <a-d> <esc>d
+"   tnoremap <a-f> <esc>f
+" endif
 
 "*****************************************************************************
 "" Mappings
@@ -261,14 +261,14 @@ nnoremap <Leader>R
 " Git fugitive
 "*****************************************************************************
 
-noremap <Leader>gs :Gstatus<CR>
-noremap <Leader>ga :Gwrite<CR>
-noremap <Leader>gc :Gcommit<CR>
+" noremap <Leader>gs :Gstatus<CR>
+" noremap <Leader>ga :Gwrite<CR>
+" noremap <Leader>gc :Gcommit<CR>
 " noremap <Leader>gp :Gpush<CR>
 " noremap <Leader>gl :Gpull<CR>
-noremap <Leader>gb :Gblame<CR>
+" noremap <Leader>gb :Gblame<CR>
 " noremap <Leader>gd :Gvdiff<CR>
-noremap <Leader>gr :Gremove<CR>
+" noremap <Leader>gr :Gremove<CR>
 noremap gh :diffget //2<CR>
 noremap gl :diffget //3<CR>
 
@@ -318,82 +318,98 @@ endfunction
 "*****************************************************************************
 " FZF
 "*****************************************************************************
+" fzf preview
+nnoremap <silent> <leader>p :<C-u>FzfPreviewFromResourcesRpc project_mru git<CR>
+nnoremap <silent> <leader>gs :<C-u>FzfPreviewGitStatusRpc<CR>
+nnoremap <silent> <leader>ga :<C-u>FzfPreviewGitActionsRpc<CR>
 
 " This is the default extra key bindings
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
+" let g:fzf_action = {
+"   \ 'ctrl-t': 'tab split',
+"   \ 'ctrl-x': 'split',
+"   \ 'ctrl-v': 'vsplit' }
 
 " Enable per-command history.
 " CTRL-N and CTRL-P will be automatically bound to next-history and
 " previous-history instead of down and up. If you don't like the change,
 " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
-let g:fzf_history_dir = '~/.local/share/fzf-history'
+" let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 " map <C-f> :Files<CR>
-nnoremap <silent> <leader>p :Files<CR>
-nnoremap <silent> <leader>h :History<CR>
-nnoremap <silent> <leader>b :GCheckout<CR>
-nnoremap <silent> <leader>gf :GF?<CR>
-nnoremap <silent> <leader>F :Ag<CR>
+" nnoremap <silent> <leader>p :Files<CR>
+
+" nnoremap <silent> <leader>h :History<CR>
+" nnoremap <silent> <leader>b :GCheckout<CR>
+" nnoremap <silent> <leader>gf :GF?<CR>
+" nnoremap <silent> <leader>F :Ag<CR>
 " map <leader>b :Buffers<CR>
 " nnoremap <leader>g :Rg<CR>
 " nnoremap <leader>t :Tags<CR>
 " nnoremap <leader>m :Marks<CR>
 
 
-let g:fzf_tags_command = 'ctags -R'
+" let g:fzf_tags_command = 'ctags -R'
 " Border color
-let g:fzf_layout = {'up':'~50%', 'window': { 'width': 0.95, 'height': 0.95,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'none' } }
+" let g:fzf_layout = {
+" \  'up':'~50%',
+" \  'window':
+" \    {
+" \      'width': 0.85,
+" \      'height': 0.85,
+" \      'yoffset': 0.5,
+" \      'xoffset': 0.5,
+" \      'highlight': 'Todo',
+" \      'border': 'rounded'
+" \    }
+" \}
 
-let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline --bind ctrl-a:select-all,ctrl-d:deselect-all,ctrl-s:toggle-up'
-let $FZF_DEFAULT_COMMAND="rg --files --hidden"
+" let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline --bind ctrl-a:select-all,ctrl-d:deselect-all,ctrl-s:toggle-up'
+" let $FZF_DEFAULT_COMMAND="rg --files --hidden"
 
 
 " Customize fzf colors to match your color scheme
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+" let g:fzf_colors =
+" \ { 'fg':      ['fg', 'Normal'],
+"   \ 'bg':      ['bg', 'Normal'],
+"   \ 'hl':      ['fg', 'Comment'],
+"   \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+"   \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+"   \ 'hl+':     ['fg', 'Statement'],
+"   \ 'info':    ['fg', 'PreProc'],
+"   \ 'border':  ['fg', 'Ignore'],
+"   \ 'prompt':  ['fg', 'Conditional'],
+"   \ 'pointer': ['fg', 'Exception'],
+"   \ 'marker':  ['fg', 'Keyword'],
+"   \ 'spinner': ['fg', 'Label'],
+"   \ 'header':  ['fg', 'Comment'] }
 
 "Get Files
-command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
+" command! -bang -nargs=? -complete=dir Files
+"     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
 
 
 " Get text in files with Rg
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview(), <bang>0)
+" command! -bang -nargs=* Rg
+"   \ call fzf#vim#grep(
+"   \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+"   \   fzf#vim#with_preview(), <bang>0)
 
 " Ripgrep advanced
-function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
-  let initial_command = printf(command_fmt, shellescape(a:query))
-  let reload_command = printf(command_fmt, '{q}')
-  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-endfunction
+" function! RipgrepFzf(query, fullscreen)
+"   let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+"   let initial_command = printf(command_fmt, shellescape(a:query))
+"   let reload_command = printf(command_fmt, '{q}')
+"   let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+"   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+" endfunction
 
-command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+" command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
 " Git grep
-command! -bang -nargs=* GGrep
-  \ call fzf#vim#grep(
-  \   'git grep --line-number '.shellescape(<q-args>), 0,
-  \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+" command! -bang -nargs=* GGrep
+"   \ call fzf#vim#grep(
+"   \   'git grep --line-number '.shellescape(<q-args>), 0,
+"   \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
 
 
 "*****************************************************************************
@@ -426,10 +442,19 @@ let g:startify_enable_special = 0
 "*****************************************************************************
 
 let g:coc_global_extensions = [
+\  "coc-eslint",
+\  "coc-spell-checker",
 \  "coc-json",
 \  "coc-git",
 \  "coc-explorer",
 \  "coc-ember",
+\  "coc-markdownlint",
+\  "coc-yank",
+\  "coc-pairs",
+\  "coc-actions",
+\  "coc-style-helper",
+\  "coc-smartf",
+\  "coc-yaml"
 \]
 
 let g:coc_global_config="$HOME/coc-settings.json"
@@ -437,6 +462,10 @@ let g:coc_global_config="$HOME/coc-settings.json"
 " Git
 nmap [g <Plug>(coc-git-prevchunk)
 nmap ]g <Plug>(coc-git-nextchunk)
+" show chunk diff at current position
+nmap gs <Plug>(coc-git-chunkinfo)
+" undo current chunk
+nmap gu :CocCommand git.chunkUndo<CR>
 " nnoremap <silent> gd :<C-u>Git diff<CR>
 
 " TS fix problems
@@ -487,7 +516,6 @@ nnoremap <silent> <leader>f  :exe 'CocList -I --normal --input='.expand('<cword>
 nmap f <Plug>(coc-smartf-forward)
 nmap F <Plug>(coc-smartf-backward)
 nmap ; <Plug>(coc-smartf-repeat)
-
 " nmap , <Plug>(coc-smartf-repeat-opposite)
 
 augroup Smartf
@@ -517,7 +545,7 @@ hi! DiffDelete ctermbg=red ctermfg=red guibg=NONE guifg=#e57373
 function! s:cocActionsOpenFromSelected(type) abort
   execute 'CocCommand actions.open ' . a:type
 endfunction
-xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open w' . visualmode()<CR>
+xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
 nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
 
 "*****************************************************************************

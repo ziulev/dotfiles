@@ -130,3 +130,12 @@ bindkey "^N" down-line-or-search
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+$FZF_PREVIEW_PREVIEW_BAT_THEME = 'ansi-dark'
+
+# Autorun tmux
+if [ -z "$TMUX" ]
+then
+  t
+fi
+

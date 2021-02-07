@@ -33,6 +33,7 @@ if [[ $? -eq 0 ]];then
   code --install-extension streetsidesoftware.code-spell-checker
   code --install-extension EditorConfig.EditorConfig
   code --install-extension eamodio.gitlens
+  code --install-extension vscodevim.vim
   echo "Extensions for VSC have been installed"
 
 else

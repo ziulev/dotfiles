@@ -40,7 +40,7 @@ alias p="npm publish"
 alias i="npm i"
 alias s="clear && npm start"
 alias is="npm i && npm start"
-alias t="tmux attach -t TMUX || tmuxp load ~/dev/dotfiles/tmux/session.yml"
+alias t="tmux attach || tmuxp load ~/dev/dotfiles/tmux/session.yml"
 
 alias rm="rm -i"
 

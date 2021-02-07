@@ -1,11 +1,14 @@
 session_name: Session
 windows:
-- window_name: incircles-frontend
+- window_name: dev
   layout: tiled
   panes:
     - shell_command:
-        - cd /dev/incircles-frontend
-- window_name: second window
+        - cd ~/dev/
+        - clear
+- window_name: dotfiles
   layout: tiled
   panes:
-    - null
+    - shell_command:
+        - cd ~/dev/dotfiles
+        - clear

@@ -18,4 +18,3 @@ fi
 # Symlinks
 rm -f ~/.tmux.conf
 ln -s $dotfiles_dir/tmux/.tmux.conf ~/.tmux.conf
-

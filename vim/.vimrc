@@ -402,19 +402,16 @@ command! -bang -nargs=* GGrep
 
 let g:startify_session_dir = '~/.config/nvim/session'
 let g:startify_lists = [
-          \ { 'type': 'sessions',  'header': ['   Sessions']       },
-          \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-          \ { 'type': 'files',     'header': ['   Files']            },
           \ { 'type': 'dir',       'header': ['   Current Directory '. getcwd()] },
+          \ { 'type': 'files',     'header': ['   Files']            },
+          \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+          \ { 'type': 'sessions',  'header': ['   Sessions']       },
           \ ]
 
 let g:startify_bookmarks = [
-            \ { 'a': '~/.config/alacritty/alacritty.yml' },
-            \ { 't': '~/.tmux.conf' },
-            \ { 'v': '~/.vimrc' },
             \ { 'z': '~/.zshrc' },
-            \ { 's': '~/.config/tmux/tmuxp/session.yml' },
-            \ '~/dev/incircles-frontend.git'
+            \ { 'v': '~/.vimrc' },
+            \ { 't': '~/.tmux.conf' },
             \ ]
 
 let g:startify_session_autoload = 1
@@ -428,7 +425,14 @@ let g:startify_enable_special = 0
 " Coc
 "*****************************************************************************
 
-" let g:coc_global_config="$HOME/coc-settings.json"
+let g:coc_global_extensions = [
+\  "coc-json",
+\  "coc-git",
+\  "coc-explorer",
+\  "coc-ember",
+\]
+
+let g:coc_global_config="$HOME/coc-settings.json"
 
 " Git
 nmap [g <Plug>(coc-git-prevchunk)

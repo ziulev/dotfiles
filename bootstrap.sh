@@ -14,6 +14,8 @@ else
   echo "Skipping macOS configuration.";
 fi
 
+sh vim/vim.sh
+
 sh git/git.sh
 
 sh tmux/tmux.sh

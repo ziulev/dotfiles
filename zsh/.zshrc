@@ -26,7 +26,7 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 
 PATH="/usr/local/bin:$PATH"
 
-# export TERM="xterm-256color"
+export TERM="xterm-256color"
 
 # --------------------------------------------------------------------------------------------------
 # Aliases

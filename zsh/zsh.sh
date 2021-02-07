@@ -24,12 +24,7 @@ else
   git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
 fi
 
-
 # Symlinks
-read -r -p "Do you want to overwrite zsh user config? [y|n] " configresponse
-if [[ $configresponse =~ ^(y|yes|Y) ]];then
-  rm ~/.zshrc
-  ln -s $dotfiles_dir/zsh/.zshrc ~/.zshrc
-else
-  echo "Skipping user zsh config overwriting.";
-fi
+rm ~/.zshrc
+ln -s $dotfiles_dir/zsh/.zshrc ~/.zshrc
+

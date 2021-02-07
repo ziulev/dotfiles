@@ -69,3 +69,4 @@ if brew list --cask bitwarden >/dev/null 2>&1; then
 else
   brew install --cask bitwarden
 fi
+

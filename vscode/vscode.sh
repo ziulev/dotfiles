@@ -39,3 +39,4 @@ else
   echo "It looks like the command 'code' isn't accessible."
   echo "Please make sure you have Visual Studio Code installed"
 fi
+

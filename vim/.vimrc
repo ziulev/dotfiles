@@ -54,6 +54,7 @@ Plug 'alvan/vim-closetag'
 Plug 'haya14busa/is.vim'
 Plug 'osyo-manga/vim-anzu'
 Plug 'eugen0329/vim-esearch' "<leader>ff
+Plug 'editorconfig/editorconfig-vim'
 
 
 call plug#end()
@@ -110,6 +111,7 @@ let no_buffers_menu=1
 set showtabline=2
 
 set background=dark
+set t_Co=256
 
 colorscheme onedark
 let g:onedark_termcolors=16
@@ -131,9 +133,9 @@ let g:onedark_color_overrides = {
   "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
   "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
   " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-  if (has("termguicolors"))
-    set termguicolors
-  endif
+  " if (has("termguicolors"))
+  "   set termguicolors
+  " endif
 " endif
 
 

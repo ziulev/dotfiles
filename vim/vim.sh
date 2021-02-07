@@ -29,4 +29,3 @@ fi
 
 # Symlinks for neovim
 ln -s ~/dev/dotfiles/vim/.vimrc ~/.config/nvim/init.vim
-

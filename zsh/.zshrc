@@ -1,3 +1,5 @@
+ZSH_DISABLE_COMPFIX=true
+
 export ZSH=$HOME/.oh-my-zsh
 export PATH=$HOME/.npm-global/bin:$PATH
 export PATH=/usr/local/bin:$PATH

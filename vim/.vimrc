@@ -1,37 +1,17 @@
 
-"" Vim-PLug core
 "*****************************************************************************
-" let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
-
-" if !filereadable(vimplug_exists)
-"  if !executable("curl")
-"    echoerr "You have to install curl or first install vim-g:clever_f_timeout_plug yourself!"
-"    execute "q!"
-"  endif
-"  echo "Installing Vim-Plug..."
-"  echo ""
-"  silent exec "!\curl -fLo " . vimplug_exists . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-"  let g:not_finish_vimplug = "yes"
-
-"  autocmd VimEnter * PlugInstall
-" endif
-
-" Required:
+"" Plugins list
+"*****************************************************************************
 call plug#begin(expand('~/.config/nvim/plugged'))
 
-"*****************************************************************************
-"" Plug install packages
-"*****************************************************************************
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'Asheq/close-buffers.vim'
-
 Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
 Plug 'junegunn/fzf.vim' " needed for previews
 Plug 'antoinemadec/coc-fzf'
 Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release/rpc' }
-
 Plug 'stsewd/fzf-checkout.vim'
 Plug 'airblade/vim-rooter'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
@@ -48,25 +28,19 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'cohama/lexima.vim'
 Plug 'axelf4/vim-strip-trailing-whitespace'
 Plug 'alvan/vim-closetag'
-
-" Plug 'Caloric/MatchTagAlways'
-" Plug 'evindor/vim-rusmode'
-"
 Plug 'haya14busa/is.vim'
 Plug 'osyo-manga/vim-anzu'
 Plug 'eugen0329/vim-esearch' "<leader>ff
 Plug 'editorconfig/editorconfig-vim'
 
-
 call plug#end()
-
-" Required:
 filetype plugin indent on
+
+
 
 "*****************************************************************************
 "" Basic Setup
 "*****************************************************************************"
-
 " Encoding
 set encoding=utf-8
 set fileencoding=utf-8
@@ -104,19 +78,14 @@ syntax sync fromstart
 set ruler              			            " Show the cursor position all the time
 set number
 set relativenumber
-
-" set guifont=Inconsolata-g\ for\ Powerline:h14
+set showtabline=2
+set background=dark
 
 let no_buffers_menu=1
-
-set showtabline=2
-
-set background=dark
-" set t_Co=256
-
-colorscheme onedark
 let g:onedark_termcolors=16
 let g:onedark_terminal_italics=1
+
+colorscheme onedark
 
 let g:onedark_color_overrides = {
 \ "black": {"gui": "#2F343F", "cterm": "235", "cterm16": "0" },
@@ -139,10 +108,8 @@ let g:onedark_color_overrides = {
   endif
 " endif
 
-
 " Better display for messages
 set cmdheight=2
-
 set pumheight=10                        " Makes popup menu smaller
 set signcolumn=yes                      " Always show the signcolumn, otherwise it would shift the text each time
 set updatetime=100                      " Faster completion
@@ -173,28 +140,6 @@ highlight CursorLine guibg=#22262b ctermbg=234
 " Fix syntax highlight
 syntax sync fromstart
 
-" Quit confirmation
-" function! ConfirmQuit(writeFile)
-"     if (a:writeFile)
-"         if (expand('%:t')=="")
-"             echo "Can't save a file with no name."
-"             return
-"         endif
-"         :write
-"     endif
-
-"     if (winnr('$')==1 && tabpagenr('$')==1)
-"         if (confirm("Do you really want to quit?", "&Yes\n&No", 2)==1)
-"             :quit
-"         endif
-"     else
-"         :quit
-"     endif
-" endfu
-
-" cnoremap <silent> x<CR>  :call ConfirmQuit(1)<CR>
-" cnoremap <silent> q<CR>  :call ConfirmQuit(0)<CR>
-
 " Fix for search and replace
 " :Ag foo
 " if has('nvim')
@@ -204,20 +149,15 @@ syntax sync fromstart
 "   tnoremap <a-f> <esc>f
 " endif
 
-"*****************************************************************************
-"" Mappings
-"*****************************************************************************
 
+
+"*****************************************************************************
+"" Basic mappings
+"*****************************************************************************
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
 nnoremap n nzzzv
 nnoremap N Nzzzv
-
-" Buffer nav
-noremap <leader>w :Bdelete this<CR>
-noremap <leader>W :Bdelete other<CR>
-noremap L :bn<CR>
-noremap H :bp<CR>
 
 " Clean search (highlight)
 nnoremap <silent> <leader><space> :noh<cr>
@@ -242,33 +182,34 @@ inoremap <silent> <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 " Paste in a new line
 nmap p :pu<CR>
+
 " 'p' to paste, 'gv' to re-select what was originally selected. 'y' to copy it again
 " xnoremap p :pu pgvy
 
-" TODO
-nnoremap <Leader>R
-  \ :let @s='\<'.expand('<cword>').'\>'<CR>
-  \ :Grepper -cword -noprompt<CR>
-  \ :cfdo %s/<C-r>s//g \| update
-  \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
 
-" ============================================================================ "
-" ===                           PLUGIN SETUP                               === "
-" ============================================================================ "
+"*****************************************************************************
+" Buffers
+"*****************************************************************************
+noremap <leader>w :Bdelete this<CR>
+noremap <leader>W :Bdelete other<CR>
+noremap L :bn<CR>
+noremap H :bp<CR>
+
+
 
 "*****************************************************************************
 " Git fugitive
 "*****************************************************************************
-
+noremap <Leader>gc :Gcommit<CR>
+noremap <Leader>gp :Gpush<CR>
+noremap <Leader>gu :Gpull<CR>
 " noremap <Leader>gs :Gstatus<CR>
 " noremap <Leader>ga :Gwrite<CR>
-" noremap <Leader>gc :Gcommit<CR>
-" noremap <Leader>gp :Gpush<CR>
-" noremap <Leader>gl :Gpull<CR>
 " noremap <Leader>gb :Gblame<CR>
 " noremap <Leader>gd :Gvdiff<CR>
 " noremap <Leader>gr :Gremove<CR>
+
 noremap gh :diffget //2<CR>
 noremap gl :diffget //3<CR>
 
@@ -277,10 +218,11 @@ nnoremap <leader>gd :Gvdiff<CR>
 nnoremap gdh :diffget //2<CR>
 nnoremap gdl :diffget //3<CR>
 
+
+
 "*****************************************************************************
 " Lightline
 "*****************************************************************************
-
 nmap <Leader>1 <Plug>lightline#bufferline#go(1)
 nmap <Leader>2 <Plug>lightline#bufferline#go(2)
 nmap <Leader>3 <Plug>lightline#bufferline#go(3)
@@ -314,6 +256,8 @@ function! LightlineGitBlame() abort
   " return blame
   return winwidth(0) > 120 ? blame : ''
 endfunction
+
+
 
 "*****************************************************************************
 " FZF
@@ -412,10 +356,11 @@ nnoremap <silent> <leader>ga :<C-u>FzfPreviewGitActionsRpc<CR>
 "   \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
 
 
+
+
 "*****************************************************************************
 " Startify
 "*****************************************************************************
-
 let g:startify_session_dir = '~/.config/nvim/session'
 let g:startify_lists = [
           \ { 'type': 'dir',       'header': ['   Current Directory '. getcwd()] },
@@ -437,10 +382,10 @@ let g:startify_session_persistence = 1
 let g:startify_enable_special = 0
 
 
+
 "*****************************************************************************
 " Coc
 "*****************************************************************************
-
 let g:coc_global_extensions = [
 \  "coc-eslint",
 \  "coc-spell-checker",
@@ -459,30 +404,49 @@ let g:coc_global_extensions = [
 
 let g:coc_global_config="$HOME/coc-settings.json"
 
-" Git
-nmap [g <Plug>(coc-git-prevchunk)
-nmap ]g <Plug>(coc-git-nextchunk)
-" show chunk diff at current position
-nmap gs <Plug>(coc-git-chunkinfo)
-" undo current chunk
-nmap gu :CocCommand git.chunkUndo<CR>
-" nnoremap <silent> gd :<C-u>Git diff<CR>
-
 " TS fix problems
 nnoremap <silent> <Leader>fi :<C-u>CocCommand tsserver.executeAutofix<CR>
-
-" Remap keys for applying codeAction to the current line.
-nmap <leader>. <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf <Plug>(coc-fix-current)
 
 " Show autocomplete when Tab is pressed
 " inoremap <silent><expr> <Tab> coc#refresh()
 
-
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
+
+
+"*****************************************************************************
+" Coc git
+"*****************************************************************************
+nmap [g <Plug>(coc-git-prevchunk)
+nmap ]g <Plug>(coc-git-nextchunk)
+
+" Show chunk diff at current position
+nmap gs <Plug>(coc-git-chunkinfo)
+" Reset current chunk
+nmap gr :CocCommand git.chunkUndo<CR>
+" nnoremap <silent> gd :<C-u>Git diff<CR>
+
+
+
+"*****************************************************************************
+" Coc code action
+"*****************************************************************************
+nmap <leader>. <Plug>(coc-codeaction)
+
+
+
+"*****************************************************************************
+" Coc fix current
+"*****************************************************************************
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf <Plug>(coc-fix-current)
+
+
+
+"*****************************************************************************
+" Coc definition, implementation, references
+"*****************************************************************************
 " Remap keys for gotos
 nmap <silent> <leader>d <Plug>(coc-definition)
 nmap <silent> gd <Plug>(coc-definition)
@@ -491,28 +455,19 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> <leader>r <Plug>(coc-references)
 nmap <silent> gr <Plug>(coc-references)
 
+
+
+"*****************************************************************************
+" Coc rename
+"*****************************************************************************
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
 
-" Manage extensions
-" nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
 
-" Global find
-" nnoremap <silent> <leader>F :exe 'CocList -I --input='.expand('<cword>').' grep'<CR>
-" command! -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList grep '.<q-args>
-" function! s:GrepArgs(...)
-"   let list = ['-S', '-smartcase', '-i', '-ignorecase', '-w', '-word',
-"         \ '-e', '-regex', '-u', '-skip-vcs-ignores', '-t', '-extension']
-"   return join(list, "\n")
-" endfunction
-
-" Buffer find
-nnoremap <silent> <leader>f  :exe 'CocList -I --normal --input='.expand('<cword>').' words'<CR>
-
-" Smart F
+"*****************************************************************************
+" Coc SmartF
+"*****************************************************************************
 nmap f <Plug>(coc-smartf-forward)
 nmap F <Plug>(coc-smartf-backward)
 nmap ; <Plug>(coc-smartf-repeat)
@@ -523,7 +478,11 @@ augroup Smartf
   autocmd User SmartfLeave :hi Conceal ctermfg=239 guifg=#504945
 augroup end
 
-"Explorer
+
+
+"*****************************************************************************
+" Coc explorer
+"*****************************************************************************
 let g:coc_explorer_global_presets = {
 \   '.vim': {
 \      'root-uri': '~/.vim',
@@ -548,10 +507,11 @@ endfunction
 xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
 nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
 
+
+
 "*****************************************************************************
 " is
 "*****************************************************************************
-
 map n <Plug>(is-nohl)<Plug>(anzu-n-with-echo)
 map N <Plug>(is-nohl)<Plug>(anzu-N-with-echo)
 
@@ -561,6 +521,6 @@ map N <Plug>(is-nohl)<Plug>(anzu-N-with-echo)
 " clear status
 " nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
 
-
 " statusline
 " set statusline=%{anzu#search_status()}
+

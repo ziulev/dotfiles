@@ -6,6 +6,7 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'sodapopcan/vim-twiggy'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'Asheq/close-buffers.vim'
 Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
@@ -32,6 +33,7 @@ Plug 'haya14busa/is.vim'
 Plug 'osyo-manga/vim-anzu'
 Plug 'eugen0329/vim-esearch' "<leader>ff
 Plug 'editorconfig/editorconfig-vim'
+Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
 filetype plugin indent on
@@ -199,15 +201,16 @@ noremap H :bp<CR>
 
 
 "*****************************************************************************
-" Git fugitive
+" Git fugitive, twiggy
 "*****************************************************************************
 noremap <Leader>gc :Gcommit<CR>
 noremap <Leader>gp :Gpush<CR>
 noremap <Leader>gu :Gpull<CR>
 noremap <Leader>gf :Gfetch<CR>
 noremap <Leader>gs :Gstatus<CR>
+noremap <Leader>gb :Twiggy<CR>
+
 " noremap <Leader>ga :Gwrite<CR>
-" noremap <Leader>gb :Gblame<CR>
 " noremap <Leader>gd :Gvdiff<CR>
 " noremap <Leader>gr :Gremove<CR>
 
@@ -497,6 +500,7 @@ let g:coc_explorer_global_presets = {
 \      'position': 'floating',
 \      'floating-position': 'right-center',
 \      'floating-width': 50,
+\      'floating-height': 45,
 \   },
 \ }
 nmap <space>e :CocCommand explorer --preset floating<CR>

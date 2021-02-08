@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="/screenshot.png?raw=true" alt="" height="400" />
+</p>
+
 # Installation
 
  ```bash

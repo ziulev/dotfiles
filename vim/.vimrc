@@ -430,7 +430,7 @@ nmap ]g <Plug>(coc-git-nextchunk)
 " Show chunk diff at current position
 nmap gs <Plug>(coc-git-chunkinfo)
 " Reset current chunk
-nmap gr :CocCommand git.chunkUndo<CR>
+nmap gU :CocCommand git.chunkUndo<CR>
 " nnoremap <silent> gd :<C-u>Git diff<CR>
 
 

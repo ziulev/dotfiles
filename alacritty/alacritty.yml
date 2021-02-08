@@ -67,8 +67,8 @@ window:
     y: 5
   decorations: buttonless
   dimensions:
-    columns: 160
-    lines: 42
+    columns: 200
+    lines: 50
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -89,18 +89,21 @@ selection:
 live_config_reload: true
 
 key_bindings:
-  - { key: V, mods: Command|Shift, action: Paste }
-  - { key: C, mods: Command|Shift, action: Copy }
-  - { key: Key0, mods: Control, action: ResetFontSize }
-  - { key: Equals, mods: Control, action: IncreaseFontSize }
-  # - { key: Add, mods: Control, action: IncreaseFontSize }
-  # - { key: Subtract, mods: Control, action: DecreaseFontSize }
-  - { key: Minus, mods: Control, action: DecreaseFontSize }
-  - { key: N, mods: Command, action: SpawnNewInstance }
-  - { key: D,     mods: Command,       chars: "\x06\x76" }
-  - { key: D,     mods: Command|Shift, chars: "\x06\x73" }
-  - { key: K,   mods: Control, action: ScrollPageUp, mode: ~Alt }
-  - { key: J, mods: Control, action: ScrollPageDown, mode: ~Alt }
+  - { key: V,        mods: Command|Shift,    action: Paste                        }
+  - { key: C,        mods: Command|Shift,    action: Copy                         }
+  - { key: Key0,     mods: Control,          action: ResetFontSize                }
+  - { key: Equals,   mods: Control,          action: IncreaseFontSize             }
+  - { key: Minus,    mods: Control,          action: DecreaseFontSize             }
+  - { key: N,        mods: Command,          action: SpawnNewInstance             }
+  - { key: D,        mods: Command,          chars: "\x06\x76"                    }
+  - { key: D,        mods: Command|Shift,    chars: "\x06\x73"                    }
+  - { key: K,        mods: Control,          action: ScrollPageUp, mode: ~Alt     }
+  - { key: J,        mods: Control,          action: ScrollPageDown, mode: ~Alt   }
+  - { key: J,        mods: Alt,              chars: "\x1bj"                       }
+  - { key: K,        mods: Alt,              chars: "\x1bk"                       }
+  - { key: H,        mods: Alt,              chars: "\x1bh"                       }
+  - { key: L,        mods: Alt,              chars: "\x1bl"                       }
+  - { key: N,        mods: Alt,              chars: "\x1bb"                       }
 
 cursor:
   # Cursor style

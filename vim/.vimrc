@@ -204,7 +204,8 @@ noremap H :bp<CR>
 noremap <Leader>gc :Gcommit<CR>
 noremap <Leader>gp :Gpush<CR>
 noremap <Leader>gu :Gpull<CR>
-" noremap <Leader>gs :Gstatus<CR>
+noremap <Leader>gf :Gfetch<CR>
+noremap <Leader>gs :Gstatus<CR>
 " noremap <Leader>ga :Gwrite<CR>
 " noremap <Leader>gb :Gblame<CR>
 " noremap <Leader>gd :Gvdiff<CR>
@@ -264,7 +265,7 @@ endfunction
 "*****************************************************************************
 " fzf preview
 nnoremap <silent> <leader>p :<C-u>FzfPreviewFromResourcesRpc project_mru git<CR>
-nnoremap <silent> <leader>gs :<C-u>FzfPreviewGitStatusRpc<CR>
+" nnoremap <silent> <leader>gs :<C-u>FzfPreviewGitStatusRpc<CR>
 nnoremap <silent> <leader>ga :<C-u>FzfPreviewGitActionsRpc<CR>
 
 " This is the default extra key bindings

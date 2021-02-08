@@ -14,9 +14,8 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # Disable the sound effects on boot
 sudo nvram SystemAudioVolume=" "
 
-# Disable transparency in the menu bar and elsewhere
-# defaults write com.apple.universalaccess reduceTransparency -bool true
-sudo defaults write com.apple.universalaccess reduceTransparency 1
+# Reduce Transparency
+defaults write com.apple.universalaccess reduceTransparency -bool true
 
 # Set sidebar icon size to medium
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
@@ -587,6 +586,7 @@ defaults write com.apple.iCal IncludeDebugMenu -bool true
 
 # Use plain text mode for new TextEdit documents
 defaults write com.apple.TextEdit RichText -int 0
+
 # Open and save files as UTF-8 in TextEdit
 defaults write com.apple.TextEdit PlainTextEncoding -int 4
 defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
@@ -703,6 +703,16 @@ defaults write org.m0k.transmission BlocklistAutoUpdate -bool true
 
 # Randomize port on launch
 defaults write org.m0k.transmission RandomPort -bool true
+
+###############################################################################
+# Xcode
+###############################################################################
+
+# Install Command Line Tools without Xcode
+xcode-select --install
+
+# Remove All Unavailable Simulators
+xcrun simctl delete unavailable
 
 ###############################################################################
 # Kill affected applications                                                  #

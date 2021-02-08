@@ -41,3 +41,6 @@ else
   echo "Please make sure you have Visual Studio Code installed"
 fi
 
+# Enable VSCodeVim Key Repeat
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+

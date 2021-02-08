@@ -1,5 +1,7 @@
 ZSH_DISABLE_COMPFIX=true
 
+export DOTFILES=$HOME/dev/dotfiles
+
 export ZSH=$HOME/.oh-my-zsh
 export PATH=$HOME/.npm-global/bin:$PATH
 export PATH=/usr/local/bin:$PATH
@@ -131,11 +133,22 @@ bindkey "^N" down-line-or-search
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-$FZF_PREVIEW_PREVIEW_BAT_THEME = 'ansi-dark'
+check_dotfiles_updates() {
+  changed=0
+  echo "Checking dotfiles changes...";
+  cd $DOTFILES && git fetch && git status -uno | grep -q 'Your branch is behind' && changed=1
+  if [ $changed = 1 ]; then
+      git pull
+      echo "Dotfiles updated successfully";
+  else
+      echo "Dotfiles up-to-date"
+  fi
+}
 
 # Autorun tmux
 if [ -z "$TMUX" ]
 then
+  check_dotfiles_updates
   t
 fi
 

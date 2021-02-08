@@ -1,7 +1,7 @@
 # Installation
 
  ```bash
- git clone git@github.com:jet8a/dotfiles.git ~/dev/dotfiles
+ export DOTFILES=$HOME/dev/dotfiles && git clone git@github.com:jet8a/dotfiles.git $DOTFILES
  ```
 
  ```bash

@@ -263,11 +263,6 @@ endfunction
 "*****************************************************************************
 " FZF
 "*****************************************************************************
-" fzf preview
-nnoremap <silent> <leader>p :<C-u>FzfPreviewFromResourcesRpc project_mru git<CR>
-" nnoremap <silent> <leader>gs :<C-u>FzfPreviewGitStatusRpc<CR>
-nnoremap <silent> <leader>ga :<C-u>FzfPreviewGitActionsRpc<CR>
-
 " This is the default extra key bindings
 " let g:fzf_action = {
 "   \ 'ctrl-t': 'tab split',
@@ -413,6 +408,16 @@ nnoremap <silent> <Leader>fi :<C-u>CocCommand tsserver.executeAutofix<CR>
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
+
+
+
+"*****************************************************************************
+" Coc fzf preview
+"*****************************************************************************
+" fzf preview
+nnoremap <silent> <leader>p :<C-u>FzfPreviewFromResourcesRpc project_mru git<CR>
+" nnoremap <silent> <leader>gs :<C-u>FzfPreviewGitStatusRpc<CR>
+nnoremap <silent> <leader>ga :<C-u>FzfPreviewGitActionsRpc<CR>
 
 
 

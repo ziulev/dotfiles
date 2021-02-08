@@ -138,11 +138,12 @@ check_dotfiles_updates() {
   echo "Checking dotfiles changes...";
   cd $DOTFILES && git fetch && git status -uno | grep -q 'Your branch is behind' && changed=1
   if [ $changed = 1 ]; then
-      git pull
-      echo "Dotfiles updated successfully";
+    git pull
+    echo "Dotfiles updated successfully";
   else
-      echo "Dotfiles up-to-date"
+    echo "Dotfiles up-to-date"
   fi
+  cd ~
 }
 
 # Autorun tmux

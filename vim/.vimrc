@@ -34,6 +34,8 @@ Plug 'osyo-manga/vim-anzu'
 Plug 'eugen0329/vim-esearch' "<leader>ff
 Plug 'editorconfig/editorconfig-vim'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'leafgarland/typescript-vim'
+Plug 'joukevandermaas/vim-ember-hbs'
 
 call plug#end()
 filetype plugin indent on
@@ -244,11 +246,11 @@ let g:lightline.active                       = {'left': [[ 'mode', 'paste' ],[ '
 let g:lightline.tabline                      = {'left': [['buffers']], 'right': [['close']]}
 let g:lightline.component_expand             = {'buffers': 'lightline#bufferline#buffers', 'gitdiff': 'lightline#gitdiff#get'}
 let g:lightline.component_type               = {'buffers': 'tabsel', 'gitdiff': 'middle'}
-let g:lightline#bufferline#shorten_path      = 1
+let g:lightline#bufferline#shorten_path      = 0
 let g:lightline#bufferline#unnamed           = '[No Name]'
 let g:lightline#bufferline#show_number       = 2
 let g:lightline#bufferline#enable_devicons   = 1
-let g:lightline#bufferline#filename_modifier = ':t'
+" let g:lightline#bufferline#filename_modifier = ':t'
 let g:lightline#bufferline#clickable         = 1
 let g:lightline.component_raw                = {'buffers': 1}
 let g:lightline.component_function           = {'blame': 'LightlineGitBlame', 'gitbranch': 'FugitiveHead'}
@@ -391,14 +393,19 @@ let g:coc_global_extensions = [
 \  "coc-json",
 \  "coc-git",
 \  "coc-explorer",
-\  "coc-ember",
 \  "coc-markdownlint",
 \  "coc-yank",
 \  "coc-pairs",
 \  "coc-actions",
 \  "coc-style-helper",
 \  "coc-smartf",
-\  "coc-yaml"
+\  "coc-yaml",
+\  "coc-tsserver",
+\  "coc-css",
+\  "coc-html",
+\  "coc-vimlsp",
+\  "coc-highlight",
+\  "coc-ember",
 \]
 
 let g:coc_global_config="$HOME/coc-settings.json"

@@ -74,5 +74,9 @@
     "mixins",
     "tiktok",
     "youtube"
+  ],
+  "coc.source.emoji.filetypes": [
+    "markdown",
+    "gitcommit"
   ]
 }

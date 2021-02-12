@@ -55,10 +55,10 @@ set fileencoding=utf-8
 set fileencodings=utf-8
 
 " Fix backspace indent
-" set backspace=indent,eol,start
+set backspace=indent,eol,start
 
 " Disable backspace for insert mode
-set backspace=indent
+" set backspace=indent
 
 " Tabs. May be overridden by autocmd rules
 set softtabstop=0
@@ -248,6 +248,10 @@ autocmd FileType html.handlebars setlocal commentstring={{!--\ %s\ --}}
 let g:hardtime_default_on = 1
 let g:hardtime_showmsg = 1
 let g:hardtime_ignore_buffer_patterns = [ "COC.*", "NERD.*" ]
+let g:list_of_normal_keys = ["h", "l", "-", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+let g:list_of_visual_keys = ["h", "j", "k", "l", "-", "+", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+let g:list_of_insert_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+let g:list_of_disabled_keys = []
 
 
 
@@ -448,6 +452,7 @@ let g:coc_global_extensions = [
 \  "coc-highlight",
 \  "coc-ember",
 \  "coc-svg",
+\  "coc-emoji",
 \]
 
 let g:coc_global_config="$HOME/coc-settings.json"

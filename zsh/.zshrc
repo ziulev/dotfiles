@@ -42,7 +42,19 @@ alias p="npm publish"
 alias i="npm i"
 alias s="clear && npm start"
 alias is="npm i && npm start"
-alias t="tmux attach || tmuxp load ~/dev/dotfiles/tmux/session.yml"
+
+
+
+function loadTmuxSession() {
+  if [[ -f "$DOTFILES/tmux/session.local.yml" ]]; then
+    tmuxp load $DOTFILES/tmux/session.local.yml
+  else
+    tmuxp load $DOTFILES/tmux/session.yml
+  fi
+}
+
+alias t="tmux attach || loadTmuxSession"
+
 
 alias rm="rm -i"
 

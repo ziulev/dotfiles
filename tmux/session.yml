@@ -1,14 +1,12 @@
 session_name: Session
 windows:
 - window_name: dev
+  start_directory: ~/dev
   layout: tiled
   panes:
-    - shell_command:
-        - cd ~/dev/
-        - clear
+    -
 - window_name: dotfiles
+  start_directory: ~/dev/dotfiles
   layout: tiled
   panes:
-    - shell_command:
-        - cd ~/dev/dotfiles
-        - clear
+    -

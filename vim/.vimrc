@@ -36,6 +36,10 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'leafgarland/typescript-vim'
 Plug 'joukevandermaas/vim-ember-hbs'
+Plug 'ojroques/vim-scrollstatus'
+Plug 'mustache/vim-mustache-handlebars'
+
+Plug 'takac/vim-hardtime'
 
 call plug#end()
 filetype plugin indent on
@@ -51,7 +55,10 @@ set fileencoding=utf-8
 set fileencodings=utf-8
 
 " Fix backspace indent
-set backspace=indent,eol,start
+" set backspace=indent,eol,start
+
+" Disable backspace for insert mode
+set backspace=indent
 
 " Tabs. May be overridden by autocmd rules
 set softtabstop=0
@@ -77,6 +84,10 @@ set fileformats=unix,dos,mac
 set clipboard=unnamed
 set noswapfile
 
+" Keep cursor centered vertically on the screen
+" let &scrolloff=999-&scrolloff
+let &scrolloff=10
+
 syntax on
 syntax sync fromstart
 set ruler              			            " Show the cursor position all the time
@@ -85,32 +96,30 @@ set relativenumber
 set showtabline=2
 set background=dark
 
+set list
+set listchars=tab:\ \ ┊,extends:…,precedes:…,space:·
+
 let no_buffers_menu=1
 let g:onedark_termcolors=16
 let g:onedark_terminal_italics=1
 
 colorscheme onedark
 
-let g:onedark_color_overrides = {
-\ "black": {"gui": "#2F343F", "cterm": "235", "cterm16": "0" },
-\ "purple": { "gui": "#C678DF", "cterm": "170", "cterm16": "5" }
-\}
+" let g:onedark_color_overrides = {
+" \ "black": {"gui": "#2F343F", "cterm": "235", "cterm16": "0" },
+" \ "purple": { "gui": "#C678DF", "cterm": "170", "cterm16": "5" }
+" \}
 
-"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
-"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
-" (see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
-" if (empty($TMUX))
+if (empty($TMUX))
   if (has("nvim"))
     "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
   endif
-  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-  if (has("termguicolors"))
-    set termguicolors
-  endif
-" endif
+endif
+
+if (has("termguicolors"))
+ set termguicolors
+endif
 
 " Better display for messages
 set cmdheight=2
@@ -128,7 +137,6 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
 
-" MOUSE
 set ttyfast
 set mouse=a
 
@@ -227,6 +235,40 @@ nnoremap gdl :diffget //3<CR>
 
 
 "*****************************************************************************
+" Commentary
+"*****************************************************************************
+autocmd FileType html.handlebars setlocal commentstring={{!--\ %s\ --}}
+
+
+
+
+"*****************************************************************************
+" Hardtime
+"*****************************************************************************
+let g:hardtime_default_on = 1
+let g:hardtime_showmsg = 1
+let g:hardtime_ignore_buffer_patterns = [ "COC.*", "NERD.*" ]
+
+
+
+"*****************************************************************************
+" Comfortable motion
+"*****************************************************************************
+let g:comfortable_motion_friction = 200.0
+let g:comfortable_motion_air_drag = 0.0
+
+
+
+"*****************************************************************************
+" ScrollStatus
+"*****************************************************************************
+let g:scrollstatus_size = 10
+let g:scrollstatus_symbol_track = '░'
+let g:scrollstatus_symbol_bar = '█'
+
+
+
+"*****************************************************************************
 " Lightline
 "*****************************************************************************
 nmap <Leader>1 <Plug>lightline#bufferline#go(1)
@@ -242,18 +284,19 @@ nmap <Leader>0 <Plug>lightline#bufferline#go(10)
 
 let g:lightline                              = {}
 let g:lightline.colorscheme                  = 'onedark'
-let g:lightline.active                       = {'left': [[ 'mode', 'paste' ],[ 'gitbranch', 'readonly', 'modified' ],[ 'gitdiff' ]],'right': [[ 'filetype' ],[ 'blame' ]]}
+let g:lightline.active                       = {'left': [['mode', 'paste'],['gitbranch', 'readonly', 'modified'],['gitdiff']],'right': [['relativepath'],['blame'],['percent']]}
 let g:lightline.tabline                      = {'left': [['buffers']], 'right': [['close']]}
 let g:lightline.component_expand             = {'buffers': 'lightline#bufferline#buffers', 'gitdiff': 'lightline#gitdiff#get'}
 let g:lightline.component_type               = {'buffers': 'tabsel', 'gitdiff': 'middle'}
 let g:lightline#bufferline#shorten_path      = 0
+" let g:lightline#bufferline#smart_path      = 0
 let g:lightline#bufferline#unnamed           = '[No Name]'
 let g:lightline#bufferline#show_number       = 2
 let g:lightline#bufferline#enable_devicons   = 1
 " let g:lightline#bufferline#filename_modifier = ':t'
 let g:lightline#bufferline#clickable         = 1
 let g:lightline.component_raw                = {'buffers': 1}
-let g:lightline.component_function           = {'blame': 'LightlineGitBlame', 'gitbranch': 'FugitiveHead'}
+let g:lightline.component_function           = {'blame': 'LightlineGitBlame', 'gitbranch': 'FugitiveHead', 'percent': 'ScrollStatus'}
 
 autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
 
@@ -262,8 +305,6 @@ function! LightlineGitBlame() abort
   " return blame
   return winwidth(0) > 120 ? blame : ''
 endfunction
-
-
 
 "*****************************************************************************
 " FZF
@@ -406,6 +447,7 @@ let g:coc_global_extensions = [
 \  "coc-vimlsp",
 \  "coc-highlight",
 \  "coc-ember",
+\  "coc-svg",
 \]
 
 let g:coc_global_config="$HOME/coc-settings.json"
@@ -504,10 +546,8 @@ let g:coc_explorer_global_presets = {
 \      'root-uri': '~/.vim',
 \   },
 \   'floating': {
-\      'position': 'floating',
-\      'floating-position': 'right-center',
-\      'floating-width': 50,
-\      'floating-height': 45,
+\      'position': 'right',
+\      'width': 50,
 \   },
 \ }
 nmap <space>e :CocCommand explorer --preset floating<CR>

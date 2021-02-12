@@ -1,4 +1,36 @@
 {
+  "coc.preferences.maxFileSize": "1MB",
+
+  "diagnostic.checkCurrentLine": false,
+  "diagnostic.displayByAle": false,
+  "diagnostic.enable": true,
+  "diagnostic.enableMessage": "always",
+  "diagnostic.enableSign": true,
+  "diagnostic.errorSign": "⚑",
+  "diagnostic.highlightOffset": 1000,
+  "diagnostic.hintSign": "⚑",
+  "diagnostic.infoSign": "⚑",
+  "diagnostic.separateRelatedInformationAsDiagnostics": true,
+  "diagnostic.level": "hint",
+  "diagnostic.messageTarget": "float",
+  "diagnostic.refreshOnInsertMode": true,
+  "diagnostic.virtualText": false,
+  "diagnostic.virtualTextPrefix": "» ",
+  "diagnostic.warningSign": "⚑",
+
+  "suggest.echodocSupport": true,
+  "suggest.minTriggerInputLength": 1,
+  "suggest.snippetIndicator": " ⭐︎",
+  "suggest.timeout": 2000, // down from 5000
+
+  "eslint.autoFixOnSave": false,
+  "eslint.run": "onType",
+
+  "javascript.validate.enable": true,
+  "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": true,
+  "javascript.preferences.quoteStyle": "single",
+  "javascript.updateImportsOnFileMove.enable": false,
+
   "explorer.file.hiddenRules": {
     "extensions": [
       "o",
@@ -11,5 +43,36 @@
       ".git"
     ],
     "patternMatches": []
-  }
+  },
+  "explorer.icon.enableNerdfont": true,
+  "explorer.quitOnOpen": true,
+  "explorer.keyMappings.global": {
+    "<cr>": [
+      "expandable?",
+      ["expanded?", "collapse", "expand"],
+      "open"
+    ],
+    "l": [
+      "expandable?",
+      ["expanded?", "collapse", "expand"],
+      "open"
+    ],
+    "h": [
+      "expandable?",
+      ["expanded?", "collapse", "expand"],
+      "open"
+    ],
+    "c": "addFile",
+    "C": "addDirectory",
+    "s": "open:vsplit",
+    "<esc>": "quit"
+  },
+  "cSpell.userWords": [
+    "Nerdfont",
+    "echodoc",
+    "incircles",
+    "mixins",
+    "tiktok",
+    "youtube"
+  ]
 }

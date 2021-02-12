@@ -70,3 +70,10 @@ else
   brew install --cask bitwarden
 fi
 
+# Karabiner
+if brew list --cask karabiner-elements >/dev/null 2>&1; then
+  echo "Karabiner has been already installed, skipping installation"
+else
+  brew install --cask karabiner-elements
+fi
+

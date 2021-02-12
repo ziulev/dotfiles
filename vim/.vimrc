@@ -296,7 +296,7 @@ let g:lightline#bufferline#enable_devicons   = 1
 " let g:lightline#bufferline#filename_modifier = ':t'
 let g:lightline#bufferline#clickable         = 1
 let g:lightline.component_raw                = {'buffers': 1}
-let g:lightline.component_function           = {'blame': 'LightlineGitBlame', 'gitbranch': 'FugitiveHead', 'percent': 'ScrollStatus'}
+let g:lightline.component_function           = {'blame': 'LightlineGitBlame', 'percent': 'ScrollStatus', 'gitbranch': 'fugitive#head'}
 
 autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
 

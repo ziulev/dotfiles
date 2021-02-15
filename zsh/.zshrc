@@ -158,10 +158,11 @@ check_dotfiles_updates() {
   cd ~
 }
 
-# Autorun tmux
+# Check dotfiles updates
 if [ -z "$TMUX" ]
 then
   check_dotfiles_updates
-  t
+  # t
 fi
 
+export HOMEBREW_GITHUB_API_TOKEN=13c84bc0adbc5fe4181314a95c8e62efc1fae2b0

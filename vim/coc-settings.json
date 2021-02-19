@@ -79,5 +79,10 @@
   "coc.source.emoji.filetypes": [
     "markdown",
     "gitcommit"
-  ]
+  ],
+  "snippets.extends": {
+    "cpp": ["c"],
+    "javascriptreact": ["javascript"],
+    "typescript": ["javascript"]
+  }
 }

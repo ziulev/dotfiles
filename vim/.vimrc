@@ -233,11 +233,23 @@ nnoremap gdh :diffget //2<CR>
 nnoremap gdl :diffget //3<CR>
 
 
+"*****************************************************************************
+" Autoclose tags
+"*****************************************************************************
+" let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.tsx'
+function s:CompleteTags()
+  " inoremap <buffer>> ><Esc>F<lyt>o</<C-r>"><Esc>kJxi
+  inoremap ><Tab> ><Esc>F<lyt>o</<C-r>"><Esc>kJxi
+endfunction
+autocmd BufRead,BufNewFile *.html,*.js,*.xml,*.tsx, call s:CompleteTags()
+
+
 
 "*****************************************************************************
 " Commentary
 "*****************************************************************************
 autocmd FileType html.handlebars setlocal commentstring={{!--\ %s\ --}}
+" autocmd FileType typescriptreact setlocal commentstring={/*\ %s\ --}}
 
 
 
@@ -453,6 +465,7 @@ let g:coc_global_extensions = [
 \  "coc-ember",
 \  "coc-svg",
 \  "coc-emoji",
+\  "coc-snippets",
 \]
 
 let g:coc_global_config="$HOME/coc-settings.json"

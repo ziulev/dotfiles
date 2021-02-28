@@ -44,32 +44,33 @@ section.left[2] = {
     provider = function()
       -- auto change color according the vim mode
       local mode_color = {
-        n = colors.magenta,
-        i = colors.green,
+        n = colors.green,
+        i = colors.yellow,
+
         v = colors.blue,
         [""] = colors.blue,
         V = colors.blue,
-        c = colors.red,
-        no = colors.magenta,
+        c = colors.green,
+        no = colors.yellow,
         s = colors.orange,
         S = colors.orange,
         [""] = colors.orange,
         ic = colors.yellow,
         R = colors.purple,
         Rv = colors.purple,
-        cv = colors.red,
-        ce = colors.red,
+        cv = colors.green,
+        ce = colors.green,
         r = colors.cyan,
         rm = colors.cyan,
         ["r?"] = colors.cyan,
-        ["!"] = colors.red,
-        t = colors.red
+        ["!"] = colors.green,
+        t = colors.green
       }
       cmd("hi GalaxyViMode guifg=" .. mode_color[fn.mode()])
       return "    "
       -- return "   "
     end,
-    highlight = {colors.red, colors.line_bg, "bold"}
+    highlight = {colors.green, colors.line_bg, "bold"}
   }
 }
 section.right[0] = {
@@ -92,16 +93,49 @@ section.right[1] = {
   }
 }
 
-section.right[2] = {
+local checkwidth = function()
+  local squeeze_width = fn.winwidth(0) / 2
+  if squeeze_width > 40 then
+    return true
+  end
+  return false
+end
+
+section.right[3] = {
+  DiffAdd = {
+    provider = "DiffAdd",
+    condition = checkwidth,
+    icon = "   ",
+    highlight = {colors.green, colors.line_bg}
+  }
+}
+section.right[4] = {
+  DiffModified = {
+    provider = "DiffModified",
+    condition = checkwidth,
+    icon = "柳",
+    highlight = {colors.yellow, colors.line_bg}
+  }
+}
+section.right[5] = {
+  DiffRemove = {
+    provider = "DiffRemove",
+    condition = checkwidth,
+    icon = " ",
+    highlight = {colors.red, colors.line_bg}
+  }
+}
+
+section.right[6] = {
   GitIcon = {
     provider = function()
-      return "    "
+      return "   "
     end,
     condition = require("galaxyline.provider_vcs").check_git_workspace,
     highlight = {colors.orange, colors.line_bg}
   }
 }
-section.right[3] = {
+section.right[7] = {
   GitBranch = {
     provider = "GitBranch",
     condition = require("galaxyline.provider_vcs").check_git_workspace,
@@ -111,40 +145,7 @@ section.right[3] = {
   }
 }
 
-local checkwidth = function()
-  local squeeze_width = fn.winwidth(0) / 2
-  if squeeze_width > 40 then
-    return true
-  end
-  return false
-end
-
-section.right[4] = {
-  DiffAdd = {
-    provider = "DiffAdd",
-    condition = checkwidth,
-    icon = " ",
-    highlight = {colors.green, colors.line_bg}
-  }
-}
-section.right[5] = {
-  DiffModified = {
-    provider = "DiffModified",
-    condition = checkwidth,
-    icon = "柳",
-    highlight = {colors.yellow, colors.line_bg}
-  }
-}
-section.right[6] = {
-  DiffRemove = {
-    provider = "DiffRemove",
-    condition = checkwidth,
-    icon = " ",
-    highlight = {colors.red, colors.line_bg}
-  }
-}
-
-section.right[7] = {
+section.right[8] = {
   LineInfo = {
     provider = "LineColumn",
     separator = "",
@@ -162,7 +163,7 @@ section.right[7] = {
 --   }
 -- }
 
-section.right[8] = {
+section.right[9] = {
   DiagnosticError = {
     provider = "DiagnosticError",
     separator = " ",
@@ -171,7 +172,7 @@ section.right[8] = {
     separator_highlight = {colors.bg, colors.bg}
   }
 }
-section.right[9] = {
+section.right[10] = {
   DiagnosticWarn = {
     provider = "DiagnosticWarn",
     -- separator = " ",
@@ -181,7 +182,7 @@ section.right[9] = {
   }
 }
 
-section.right[10] = {
+section.right[11] = {
   DiagnosticInfo = {
     -- separator = " ",
     provider = "DiagnosticInfo",
@@ -191,7 +192,7 @@ section.right[10] = {
   }
 }
 
-section.right[11] = {
+section.right[12] = {
   DiagnosticHint = {
     provider = "DiagnosticHint",
     -- separator = " ",

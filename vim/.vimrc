@@ -40,26 +40,27 @@ Plug 'leafgarland/typescript-vim'
 Plug 'joukevandermaas/vim-ember-hbs'
 " Plug 'ojroques/vim-scrollstatus'
 Plug 'mustache/vim-mustache-handlebars'
-" Plug 'bagrat/vim-buffet'
 Plug 'tjdevries/train.nvim'
-
 Plug 'takac/vim-hardtime'
-
 Plug 'rmagatti/auto-session'
-
 Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
-
+Plug 'pangloss/vim-javascript'
 " lua
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'windwp/nvim-autopairs'
 Plug 'TimUntersberger/neogit'
+Plug 'romgrk/barbar.nvim'
+Plug 'andymass/vim-matchup'
+Plug 'wfxr/minimap.vim'
 
+Plug 'kevinhwang91/nvim-hlslens' "Search
+Plug 'wellle/context.vim'
+Plug 'tpope/vim-sleuth'
 
 call plug#end()
 filetype plugin indent on
-
 
 
 "*****************************************************************************
@@ -108,7 +109,7 @@ syntax on
 syntax sync fromstart
 set ruler              			            " Show the cursor position all the time
 set number
-set relativenumber
+" set relativenumber
 set showtabline=2
 set background=dark
 
@@ -168,6 +169,12 @@ highlight CursorLine guibg=#22262b ctermbg=234
 " Fix syntax highlight
 syntax sync fromstart
 
+" Persistent undo
+if has('persistent_undo')      "check if your vim version supports it
+  set undofile                 "turn on the feature
+  set undodir=$HOME/.vim/undo  "directory where the undo files will be stored
+endif
+
 " Fix for search and replace
 " :Ag foo
 " if has('nvim')
@@ -216,6 +223,30 @@ nmap p :pu<CR>
 
 
 "*****************************************************************************
+" Context
+"*****************************************************************************
+let g:context_add_mappings = 0
+let g:context_nvim_no_redraw = 1
+
+"*****************************************************************************
+" Search nvim-hlslens
+"*****************************************************************************
+noremap <silent> n <Cmd>execute('normal! ' . v:count1 . 'n')<CR>
+            \<Cmd>lua require('hlslens').start()<CR>
+noremap <silent> N <Cmd>execute('normal! ' . v:count1 . 'N')<CR>
+            \<Cmd>lua require('hlslens').start()<CR>
+noremap * *<Cmd>lua require('hlslens').start()<CR>
+noremap # #<Cmd>lua require('hlslens').start()<CR>
+noremap g* g*<Cmd>lua require('hlslens').start()<CR>
+noremap g# g#<Cmd>lua require('hlslens').start()<CR>
+
+nnoremap <silent> <leader>l :nohlsearch<CR>
+
+lua require('search')
+
+
+
+"*****************************************************************************
 " Autopairs
 "*****************************************************************************
 lua require('nvim-autopairs').setup()
@@ -232,7 +263,6 @@ lua require('gitsigns').setup()
 "*****************************************************************************
 " Galaxyline
 "*****************************************************************************
-
 function! ConfigStatusLine()
   lua require('status-line')
 endfunction
@@ -246,12 +276,12 @@ augroup END
 
 
 "*****************************************************************************
-" Buffers
+" Buffer close
 "*****************************************************************************
 noremap <leader>w :Bdelete this<CR>
-noremap <leader>W :Bdelete other<CR>
-noremap L :bn<CR>
-noremap H :bp<CR>
+" noremap <leader>k<space>w :Bdelete other<CR>
+" noremap L :bn<CR>
+" noremap H :bp<CR>
 
 
 
@@ -269,8 +299,8 @@ noremap <Leader>gb :Twiggy<CR>
 " noremap <Leader>gd :Gvdiff<CR>
 " noremap <Leader>gr :Gremove<CR>
 
-noremap gh :diffget //2<CR>
-noremap gl :diffget //3<CR>
+" noremap gh :diffget //2<CR>
+" noremap gl :diffget //3<CR>
 
 " Conflict Resolution
 " nnoremap <leader>gd :Gvdiff<CR>
@@ -279,15 +309,26 @@ nnoremap gdl :diffget //3<CR>
 
 
 "*****************************************************************************
-" Autoclose tags
+" Barbar
 "*****************************************************************************
-" let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.tsx'
-" function s:CompleteTags()
-"   inoremap ><Tab> ><Esc>F<lyt>o</<C-r>"><Esc>kJxi
-" endfunction
-" autocmd BufRead,BufNewFile *.html,*.js,*.xml,*.tsx, call s:CompleteTags()
+let bufferline = get(g:, 'bufferline', {})
+let bufferline.maximum_padding = 1
+let bufferline.animation = v:false
+" let bufferline.closable = v:false
 
+" Magic buffer-picking mode
+nnoremap <silent> <C-s> :BufferPick<CR>
 
+" Move to previous/next
+nnoremap <silent> H :BufferPrevious<CR>
+nnoremap <silent> L :BufferNext<CR>
+
+" Move to previous/next
+nnoremap <silent> <leader>H :BufferMovePrevious<CR>
+nnoremap <silent> <leader>L :BufferMoveNext<CR>
+
+" nnoremap <silent> <leader>w :BufferClose<CR>
+nnoremap <silent> <leader>k<space>w :BufferCloseAllButCurrent<CR>
 
 "*****************************************************************************
 " Commentary
@@ -502,7 +543,6 @@ let g:coc_global_extensions = [
 \  "coc-explorer",
 \  "coc-markdownlint",
 \  "coc-yank",
-\  "coc-pairs",
 \  "coc-actions",
 \  "coc-style-helper",
 \  "coc-smartf",

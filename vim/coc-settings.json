@@ -70,6 +70,7 @@
   "cSpell.userWords": [
     "Nerdfont",
     "Spotify",
+    "duckduckgo",
     "echodoc",
     "incircles",
     "mixins",
@@ -84,5 +85,6 @@
     "cpp": ["c"],
     "javascriptreact": ["javascript"],
     "typescript": ["javascript"]
-  }
+  },
+  "git.enableGutters": false
 }

@@ -31,6 +31,9 @@ fi
 rm -f ~/.config/nvim/init.vim
 ln -s ~/dev/dotfiles/vim/.vimrc ~/.config/nvim/init.vim
 
+rm -f ~/.config/nvim/lua
+ln -s ~/dev/dotfiles/vim/lua ~/.config/nvim/lua
+
 # Symlinks for coc-settings
 rm -f ~/.config/nvim/coc-settings.json
 ln -s $dotfiles_dir/vim/coc-settings.json ~/.config/nvim/coc-settings.json

@@ -4,8 +4,10 @@
 "*****************************************************************************
 call plug#begin(expand('~/.config/nvim/plugged'))
 
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-commentary'
+Plug 'b3nj5m1n/kommentary'
+
+" Plug 'tpope/vim-fugitive'
 Plug 'sodapopcan/vim-twiggy'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'Asheq/close-buffers.vim'
@@ -17,9 +19,9 @@ Plug 'stsewd/fzf-checkout.vim'
 Plug 'airblade/vim-rooter'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'tpope/vim-surround'
-Plug 'itchyny/lightline.vim'
-Plug 'niklaas/lightline-gitdiff'
-Plug 'mengelbrecht/lightline-bufferline'
+" Plug 'itchyny/lightline.vim'
+" Plug 'niklaas/lightline-gitdiff'
+" Plug 'mengelbrecht/lightline-bufferline'
 Plug 'christoomey/vim-conflicted'
 Plug 'mhinz/vim-startify'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -36,10 +38,24 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'leafgarland/typescript-vim'
 Plug 'joukevandermaas/vim-ember-hbs'
-Plug 'ojroques/vim-scrollstatus'
+" Plug 'ojroques/vim-scrollstatus'
 Plug 'mustache/vim-mustache-handlebars'
+" Plug 'bagrat/vim-buffet'
+Plug 'tjdevries/train.nvim'
 
 Plug 'takac/vim-hardtime'
+
+Plug 'rmagatti/auto-session'
+
+Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+
+" lua
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'lewis6991/gitsigns.nvim'
+Plug 'windwp/nvim-autopairs'
+Plug 'TimUntersberger/neogit'
+
 
 call plug#end()
 filetype plugin indent on
@@ -160,8 +176,7 @@ syntax sync fromstart
 "   tnoremap <a-d> <esc>d
 "   tnoremap <a-f> <esc>f
 " endif
-
-
+"
 
 "*****************************************************************************
 "" Basic mappings
@@ -201,6 +216,36 @@ nmap p :pu<CR>
 
 
 "*****************************************************************************
+" Autopairs
+"*****************************************************************************
+lua require('nvim-autopairs').setup()
+
+
+
+"*****************************************************************************
+" Git signs
+"*****************************************************************************
+lua require('gitsigns').setup()
+
+
+
+"*****************************************************************************
+" Galaxyline
+"*****************************************************************************
+
+function! ConfigStatusLine()
+  lua require('status-line')
+endfunction
+
+augroup status_line_init
+  autocmd!
+  autocmd VimEnter * call ConfigStatusLine()
+augroup END
+
+
+
+
+"*****************************************************************************
 " Buffers
 "*****************************************************************************
 noremap <leader>w :Bdelete this<CR>
@@ -228,7 +273,7 @@ noremap gh :diffget //2<CR>
 noremap gl :diffget //3<CR>
 
 " Conflict Resolution
-nnoremap <leader>gd :Gvdiff<CR>
+" nnoremap <leader>gd :Gvdiff<CR>
 nnoremap gdh :diffget //2<CR>
 nnoremap gdl :diffget //3<CR>
 
@@ -237,11 +282,10 @@ nnoremap gdl :diffget //3<CR>
 " Autoclose tags
 "*****************************************************************************
 " let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.tsx'
-function s:CompleteTags()
-  " inoremap <buffer>> ><Esc>F<lyt>o</<C-r>"><Esc>kJxi
-  inoremap ><Tab> ><Esc>F<lyt>o</<C-r>"><Esc>kJxi
-endfunction
-autocmd BufRead,BufNewFile *.html,*.js,*.xml,*.tsx, call s:CompleteTags()
+" function s:CompleteTags()
+"   inoremap ><Tab> ><Esc>F<lyt>o</<C-r>"><Esc>kJxi
+" endfunction
+" autocmd BufRead,BufNewFile *.html,*.js,*.xml,*.tsx, call s:CompleteTags()
 
 
 
@@ -287,40 +331,45 @@ let g:scrollstatus_symbol_bar = '█'
 "*****************************************************************************
 " Lightline
 "*****************************************************************************
-nmap <Leader>1 <Plug>lightline#bufferline#go(1)
-nmap <Leader>2 <Plug>lightline#bufferline#go(2)
-nmap <Leader>3 <Plug>lightline#bufferline#go(3)
-nmap <Leader>4 <Plug>lightline#bufferline#go(4)
-nmap <Leader>5 <Plug>lightline#bufferline#go(5)
-nmap <Leader>6 <Plug>lightline#bufferline#go(6)
-nmap <Leader>7 <Plug>lightline#bufferline#go(7)
-nmap <Leader>8 <Plug>lightline#bufferline#go(8)
-nmap <Leader>9 <Plug>lightline#bufferline#go(9)
-nmap <Leader>0 <Plug>lightline#bufferline#go(10)
+" nmap <Leader>1 <Plug>lightline#bufferline#go(1)
+" nmap <Leader>2 <Plug>lightline#bufferline#go(2)
+" nmap <Leader>3 <Plug>lightline#bufferline#go(3)
+" nmap <Leader>4 <Plug>lightline#bufferline#go(4)
+" nmap <Leader>5 <Plug>lightline#bufferline#go(5)
+" nmap <Leader>6 <Plug>lightline#bufferline#go(6)
+" nmap <Leader>7 <Plug>lightline#bufferline#go(7)
+" nmap <Leader>8 <Plug>lightline#bufferline#go(8)
+" nmap <Leader>9 <Plug>lightline#bufferline#go(9)
+" nmap <Leader>0 <Plug>lightline#bufferline#go(10)
 
-let g:lightline                              = {}
-let g:lightline.colorscheme                  = 'onedark'
-let g:lightline.active                       = {'left': [['mode', 'paste'],['gitbranch', 'readonly', 'modified'],['gitdiff']],'right': [['relativepath'],['blame'],['percent']]}
-let g:lightline.tabline                      = {'left': [['buffers']], 'right': [['close']]}
-let g:lightline.component_expand             = {'buffers': 'lightline#bufferline#buffers', 'gitdiff': 'lightline#gitdiff#get'}
-let g:lightline.component_type               = {'buffers': 'tabsel', 'gitdiff': 'middle'}
-let g:lightline#bufferline#shorten_path      = 0
-" let g:lightline#bufferline#smart_path      = 0
-let g:lightline#bufferline#unnamed           = '[No Name]'
-let g:lightline#bufferline#show_number       = 2
-let g:lightline#bufferline#enable_devicons   = 1
-" let g:lightline#bufferline#filename_modifier = ':t'
-let g:lightline#bufferline#clickable         = 1
-let g:lightline.component_raw                = {'buffers': 1}
-let g:lightline.component_function           = {'blame': 'LightlineGitBlame', 'percent': 'ScrollStatus', 'gitbranch': 'fugitive#head'}
+" let g:lightline                              = {}
+" let g:lightline.colorscheme                  = 'onedark'
+" let g:lightline.active                       = {'left': [['mode', 'paste'],['gitbranch', 'readonly', 'modified'],['gitdiff']],'right': [['relativepath'],['blame'],['percent']]}
 
-autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
+" let g:lightline.tabline = 0
+" let g:lightline.tabline                      = {'left': [['buffers']], 'right': [[]]}
+" let g:lightline#bufferline#shorten_path      = 0
+" let g:lightline#bufferline#unnamed           = '[No Name]'
+" let g:lightline#bufferline#enable_devicons   = 1
+" let g:lightline#bufferline#clickable         = 1
+" let g:lightline#bufferline#unicode_symbols   = 1
 
-function! LightlineGitBlame() abort
-  let blame = get(b:, 'coc_git_blame', '')
-  " return blame
-  return winwidth(0) > 120 ? blame : ''
-endfunction
+" let g:lightline.component_expand             = {'buffers': 'lightline#bufferline#buffers', 'gitdiff': 'lightline#gitdiff#get'}
+" let g:lightline.component_type               = {'buffers': 'tabsel', 'gitdiff': 'middle'}
+" let g:lightline.component_raw                = {'buffers': 1}
+" let g:lightline.component_function           = {
+"       \ 'blame': 'LightlineGitBlame',
+"       \ 'percent': 'ScrollStatus',
+"       \ 'gitbranch': 'fugitive#head',
+"       \ }
+
+" autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
+
+" function! LightlineGitBlame() abort
+"   let blame = get(b:, 'coc_git_blame', '')
+"   " return blame
+"   return winwidth(0) > 120 ? blame : ''
+" endfunction
 
 "*****************************************************************************
 " FZF
@@ -445,6 +494,7 @@ let g:startify_enable_special = 0
 " Coc
 "*****************************************************************************
 let g:coc_global_extensions = [
+\  "coc-lua",
 \  "coc-eslint",
 \  "coc-spell-checker",
 \  "coc-json",

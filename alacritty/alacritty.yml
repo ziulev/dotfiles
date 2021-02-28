@@ -67,7 +67,7 @@ window:
     y: 5
   decorations: buttonless
   dimensions:
-    columns: 200
+    columns: 160
     lines: 50
 
 scrolling:

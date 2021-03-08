@@ -104,6 +104,10 @@ key_bindings:
   - { key: H,        mods: Alt,              chars: "\x1bh"                       }
   - { key: L,        mods: Alt,              chars: "\x1bl"                       }
   - { key: N,        mods: Alt,              chars: "\x1bb"                       }
+  - { key: J,        mods: Shift|Alt,        chars: "\x1bJ"                       }
+  - { key: K,        mods: Shift|Alt,        chars: "\x1bK"                       }
+  - { key: H,        mods: Shift|Alt,        chars: "\x1bH"                       }
+  - { key: L,        mods: Shift|Alt,        chars: "\x1bL"                       }
 
 cursor:
   # Cursor style

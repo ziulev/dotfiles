@@ -7,7 +7,7 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 " Plug 'tpope/vim-commentary'
 Plug 'b3nj5m1n/kommentary'
 
-" Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 Plug 'sodapopcan/vim-twiggy'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'Asheq/close-buffers.vim'
@@ -227,6 +227,11 @@ nmap p :pu<CR>
 "*****************************************************************************
 let g:context_add_mappings = 0
 let g:context_nvim_no_redraw = 1
+let g:context_ellipsis_char = '·'
+
+let g:context_highlight_normal = 'Normal'
+let g:context_highlight_border = 'Comment'
+let g:context_highlight_tag    = 'Special'
 
 "*****************************************************************************
 " Search nvim-hlslens
@@ -288,10 +293,10 @@ noremap <leader>w :Bdelete this<CR>
 "*****************************************************************************
 " Git fugitive, twiggy
 "*****************************************************************************
-noremap <Leader>gc :Gcommit<CR>
-noremap <Leader>gp :Gpush<CR>
-noremap <Leader>gu :Gpull<CR>
-noremap <Leader>gf :Gfetch<CR>
+noremap <Leader>gc :Git commit<CR>
+noremap <Leader>gP :Git push<CR>
+noremap <Leader>gp :Git pull<CR>
+noremap <Leader>gf :Git fetch<CR>
 noremap <Leader>gs :Gstatus<CR>
 noremap <Leader>gb :Twiggy<CR>
 

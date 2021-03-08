@@ -71,9 +71,23 @@ else
 fi
 
 # Karabiner
-if brew list --cask karabiner-elements >/dev/null 2>&1; then
-  echo "Karabiner has been already installed, skipping installation"
+# if brew list --cask karabiner-elements >/dev/null 2>&1; then
+#   echo "Karabiner has been already installed, skipping installation"
+# else
+#   brew install --cask karabiner-elements
+# fi
+
+# Mailtrackerblocker
+if brew list --cask mailtrackerblocker >/dev/null 2>&1; then
+  echo "Mailtrackerblocker has been already installed, skipping installation"
 else
-  brew install --cask karabiner-elements
+  brew install apparition47/tap/mailtrackerblocker
+fi
+
+
+if brew list --cask eul >/dev/null 2>&1; then
+  echo "Eul has been already installed, skipping installation"
+else
+  brew install --cask eul
 fi
 

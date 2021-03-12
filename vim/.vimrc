@@ -56,8 +56,11 @@ Plug 'andymass/vim-matchup'
 Plug 'wfxr/minimap.vim'
 
 Plug 'kevinhwang91/nvim-hlslens' "Search
-Plug 'wellle/context.vim'
+" Plug 'wellle/context.vim'
 Plug 'tpope/vim-sleuth'
+Plug 'voldikss/vim-floaterm'
+Plug 'liuchengxu/vim-which-key'
+Plug 'dart-lang/dart-vim-plugin'
 
 call plug#end()
 filetype plugin indent on
@@ -220,6 +223,30 @@ nmap p :pu<CR>
 " 'p' to paste, 'gv' to re-select what was originally selected. 'y' to copy it again
 " xnoremap p :pu pgvy
 
+
+
+"*****************************************************************************
+" Which key
+"*****************************************************************************
+let g:mapleader = "\<Space>"
+let g:maplocalleader = ','
+nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
+set timeoutlen=500
+
+
+
+"*****************************************************************************
+" Float terminal
+"*****************************************************************************
+nnoremap <silent> <leader>t      :<c-u>FloatermToggle<CR>
+let g:floaterm_gitcommit='floaterm'
+let g:floaterm_autoinsert=1
+let g:floaterm_width=0.8
+let g:floaterm_height=0.8
+let g:floaterm_wintitle=0
+let g:floaterm_autoclose=1
+let g:floaterm_keymap_toggle = '<esc>'
 
 
 "*****************************************************************************
@@ -561,6 +588,7 @@ let g:coc_global_extensions = [
 \  "coc-svg",
 \  "coc-emoji",
 \  "coc-snippets",
+\  "coc-flutter-tools",
 \]
 
 let g:coc_global_config="$HOME/coc-settings.json"

@@ -1,4 +1,3 @@
-
 require('hlslens').setup({
     override_line_lens = function(lnum, loc, idx, r_idx, count, hls_ns)
         local sfw = vim.v.searchforward == 1

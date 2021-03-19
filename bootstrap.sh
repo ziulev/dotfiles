@@ -14,7 +14,7 @@ else
   echo "Skipping macOS configuration.";
 fi
 
-sh vim/vim.sh
+sh nvim/install.sh
 
 sh git/git.sh
 

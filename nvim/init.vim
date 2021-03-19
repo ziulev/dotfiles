@@ -1,46 +1,6 @@
 "*****************************************************************************
 "" Plugins list
 "*****************************************************************************
-" call plug#begin(expand('~/.config/nvim/plugged'))
-" Plug 'b3nj5m1n/kommentary'
-" Plug 'sodapopcan/vim-twiggy'
-" Plug 'yuttie/comfortable-motion.vim'
-" Plug 'Asheq/close-buffers.vim'
-" Plug 'airblade/vim-rooter'
-" Plug 'tpope/vim-surround'
-" Plug 'mhinz/vim-startify'
-" Plug 'joshdick/onedark.vim'
-" Plug 'haya14busa/is.vim'
-" Plug 'osyo-manga/vim-anzu'
-" Plug 'editorconfig/editorconfig-vim'
-" Plug 'christoomey/vim-tmux-navigator'
-" Plug 'mustache/vim-mustache-handlebars'
-" Plug 'rmagatti/auto-session'
-" Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
-" Plug 'kyazdani42/nvim-web-devicons'
-" Plug 'lewis6991/gitsigns.nvim'
-" Plug 'windwp/nvim-autopairs'
-" Plug 'TimUntersberger/neogit'
-" Plug 'romgrk/barbar.nvim'
-" Plug 'kevinhwang91/nvim-hlslens'
-" Plug 'tpope/vim-sleuth'
-" Plug 'kyazdani42/nvim-tree.lua'
-" Plug 'neovim/nvim-lspconfig'
-" Plug 'hrsh7th/nvim-compe'
-" Plug 'ray-x/lsp_signature.nvim'
-" Plug 'nvim-lua/completion-nvim'
-" Plug 'steelsojka/completion-buffers'
-" Plug 'kristijanhusak/completion-tags'
-" Plug 'norcalli/nvim-colorizer.lua'
-" Plug 'glepnir/lspsaga.nvim'
-" Plug 'f-person/git-blame.nvim'
-" " telescope
-" Plug 'nvim-lua/popup.nvim'
-" Plug 'nvim-lua/plenary.nvim'
-" Plug 'nvim-telescope/telescope.nvim'
-" " /telescope
-" call plug#end()
-" filetype plugin indent on
 lua require('plugins')
 
 

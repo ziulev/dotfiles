@@ -84,7 +84,6 @@ return require('packer').startup(function(use)
     -- use 'b3nj5m1n/kommentary'
     use 'terrortylor/nvim-comment'
     use 'yuttie/comfortable-motion.vim'
-    use 'Asheq/close-buffers.vim'
     use 'airblade/vim-rooter'
     use 'tpope/vim-surround'
 --    use 'mhinz/vim-startify'

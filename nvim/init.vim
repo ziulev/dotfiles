@@ -279,12 +279,6 @@ augroup END
 
 
 "*****************************************************************************
-" Buffer close
-"*****************************************************************************
-noremap <leader>w :Bdelete this<CR>
-
-
-"*****************************************************************************
 " Git fugitive, twiggy, neogit
 "*****************************************************************************
 " noremap <Leader>gc :Git commit<CR>
@@ -321,6 +315,7 @@ nnoremap <silent> <leader>H :BufferMovePrevious<CR>
 nnoremap <silent> <leader>L :BufferMoveNext<CR>
 " nnoremap <silent> <leader>w :BufferClose<CR>
 nnoremap <silent> <leader>kw :BufferCloseAllButCurrent<CR>
+noremap <leader>w :BufferClose<CR>
 
 
 "*****************************************************************************

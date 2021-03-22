@@ -133,6 +133,12 @@ nmap p :pu<CR>
 
 
 "*****************************************************************************
+" Treesitter
+"*****************************************************************************
+" lua require('treesitter-config')
+
+
+"*****************************************************************************
 " Comment
 "*****************************************************************************
 lua require('comment-config')
@@ -264,7 +270,7 @@ lua require('gitsigns-config')
 " Galaxyline
 "*****************************************************************************
 function! ConfigStatusLine()
-  lua require('status-line-config')
+  lua require('galaxyline-config')
 endfunction
 augroup status_line_init
   autocmd!

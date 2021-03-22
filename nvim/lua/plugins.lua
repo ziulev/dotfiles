@@ -39,18 +39,11 @@ return require('packer').startup(function(use)
     use 'hrsh7th/vim-vsnip'
     use 'hrsh7th/vim-vsnip-integ'
     -- use 'honza/vim-snippets'
-	--
 	
 	-- Completion
 	use 'nvim-lua/completion-nvim'
 	use 'steelsojka/completion-buffers'
 	use 'kristijanhusak/completion-tags'
-
-
-    -- Treesitter
-    -- use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-    -- use 'nvim-treesitter/playground'
-    -- use 'p00f/nvim-ts-rainbow'
 
     -- Icons
     use 'kyazdani42/nvim-web-devicons'
@@ -77,6 +70,9 @@ return require('packer').startup(function(use)
     -- use 'tjdevries/colorbuddy.vim'
     -- use 'Th3Whit3Wolf/onebuddy'
     use 'joshdick/onedark.vim'
+
+    -- Ember
+    -- use 'joukevandermaas/vim-ember-hbs'
 
     -- Git
     use 'sodapopcan/vim-twiggy'

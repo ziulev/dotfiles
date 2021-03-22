@@ -3,10 +3,46 @@ local completion = require'completion'
 local configs = require'lspconfig/configs'
 local util = require'lspconfig/util'
 
-lspconfig.flow.setup{
+-------------------------------------------------------------------
+-- GENERAL
+-------------------------------------------------------------------
+local eslint = {
+  lintCommand = "./node_modules/.bin/eslint -f unix --stdin --stdin-filename ${INPUT}",
+  lintIgnoreExitCode = true,
+  lintStdin = true,
+  lintFormats = {"%f:%l:%c: %m"},
+  formatCommand = "./node_modules/.bin/eslint --fix-to-stdout --stdin --stdin-filename=${INPUT}",
+  formatStdin = true,
+}
+local shellcheck = {
+  LintCommand = 'shellcheck -f gcc -x',
+  lintFormats = {'%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m'}
+}
+lspconfig.efm.setup {
+  on_attach=completion.on_attach,
+  filetypes = {"lua", "javascriptreact", "javascript", "sh", "html", "css", "json", "yaml", "markdown"},
+  settings = {
+    rootMakers = {".git/"},
+    languages = {
+      javascriptreact = {eslint},
+      javascript = {eslint},
+      typescript = {eslint},
+      sh = {shellcheck},
+    }
+  }
+}
+
+
+-------------------------------------------------------------------
+-- Flow
+-------------------------------------------------------------------
+lspconfig.flow.setup {
   on_attach=completion.on_attach,
 }
 
+-------------------------------------------------------------------
+-- HTML
+-------------------------------------------------------------------
 --Enable (broadcasting) snippet capability for completion
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -16,15 +52,25 @@ lspconfig.html.setup {
   on_attach=completion.on_attach,
 }
 
--- require'lspconfig'.tsserver.setup{}
-lspconfig.tsserver.setup{
+-------------------------------------------------------------------
+-- javascript, typescript
+-------------------------------------------------------------------
+lspconfig.tsserver.setup {
+  on_attach=completion.on_attach,
+  settings = {documentFormatting = false}
+}
+
+-------------------------------------------------------------------
+-- CSS
+-------------------------------------------------------------------
+lspconfig.cssls.setup {
   on_attach=completion.on_attach,
 }
 
-lspconfig.cssls.setup{
-  on_attach=completion.on_attach,
-}
-
+-------------------------------------------------------------------
+-- JSON
+-------------------------------------------------------------------
+-- npm install -g vscode-json-languageserver
 lspconfig.jsonls.setup {
   commands = {
     Format = {
@@ -36,11 +82,17 @@ lspconfig.jsonls.setup {
   on_attach=completion.on_attach,
 }
 
-lspconfig.vimls.setup{
+-------------------------------------------------------------------
+-- VIM
+-------------------------------------------------------------------
+-- npm install -g vim-language-server
+lspconfig.vimls.setup {
   on_attach=completion.on_attach,
 }
 
--- Add custom entry for Ember Language Server
+-------------------------------------------------------------------
+-- Ember
+-------------------------------------------------------------------
 configs.els = {
   default_config = {
     cmd = {'ember-language-server', '--stdio'},
@@ -48,8 +100,16 @@ configs.els = {
     root_dir = util.root_pattern('package.json', '.git')
   }
 }
--- Ember Language Server
 lspconfig.els.setup {
   on_attach = completion.on_attach,
+}
+
+
+-------------------------------------------------------------------
+-- Ember
+-------------------------------------------------------------------
+-- npm install -g yaml-language-server
+lspconfig.yamlls.setup{
+  -- on_attach = require'lsp'.common_on_attach,
 }
 

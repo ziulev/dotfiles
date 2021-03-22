@@ -85,7 +85,8 @@ return require('packer').startup(function(use)
     use 'f-person/git-blame.nvim'
 
     -- General Plugins
-    use 'b3nj5m1n/kommentary'
+    -- use 'b3nj5m1n/kommentary'
+    use 'terrortylor/nvim-comment'
     use 'yuttie/comfortable-motion.vim'
     use 'Asheq/close-buffers.vim'
     use 'airblade/vim-rooter'

@@ -12,6 +12,20 @@ else
   brew install neovim
 fi
 
+if command -v shellcheck >/dev/null 2>&1; then
+  echo "[ SKIPPING ] :: $MODULE >> shellcheck has been already installed"
+else
+  echo "[ INSTALLING ] :: $MODULE >> shellcheck"
+  brew install shellcheck
+fi
+
+if command -v efm-langserver >/dev/null 2>&1; then
+  echo "[ SKIPPING ] :: $MODULE >> efm-langserver has been already installed"
+else
+  echo "[ INSTALLING ] :: $MODULE >> efm-langserver"
+  brew install efm-langserver
+fi
+
 # Packer and symlinks
 if command -v nvim >/dev/null 2>&1; then
   PACKER=$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim

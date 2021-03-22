@@ -127,9 +127,15 @@ vnoremap K :m '<-2<CR>gv=gv
 inoremap <silent> <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <silent> <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 " Paste in a new line
-" nmap p :pu<CR>
+nmap p :pu<CR>
 " 'p' to paste, 'gv' to re-select what was originally selected. 'y' to copy it again
 " xnoremap p :pu pgvy
+
+
+"*****************************************************************************
+" Comment
+"*****************************************************************************
+lua require('comment-config')
 
 
 "*****************************************************************************
@@ -141,9 +147,7 @@ lua require('lua-ls')
 "*****************************************************************************
 " Git blame
 "*****************************************************************************
-let g:gitblame_date_format = '%d/%m/%Y'
-" highlight CursorLine
-highlight gitblame guibg=NONE guifg=#333842
+lua require('git-blame-config')
 
 
 "*****************************************************************************
@@ -171,12 +175,13 @@ nnoremap <leader>p <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+lua require('telescope-config')
 
 
 "*****************************************************************************
 " Colorizer
 "*****************************************************************************
-lua require'colorizer'.setup()
+lua require('colorizer-config')
 
 
 "*****************************************************************************
@@ -222,16 +227,6 @@ lua require('lsp')
 
 
 "*****************************************************************************
-" Which key
-"*****************************************************************************
-" let g:mapleader = "\<Space>"
-" let g:maplocalleader = ','
-" nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
-" nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
-" set timeoutlen=500
-
-
-"*****************************************************************************
 " Context
 "***************************************************************************** let g:context_add_mappings = 0 let g:context_nvim_no_redraw = 1 let g:context_ellipsis_char = '·' let g:context_highlight_normal = 'Normal'
 let g:context_highlight_border = 'Comment'
@@ -256,7 +251,7 @@ lua require('hlslens-config')
 "*****************************************************************************
 " Autopairs
 "*****************************************************************************
-lua require('nvim-autopairs').setup()
+lua require('autopairs-config')
 
 
 "*****************************************************************************
@@ -325,8 +320,7 @@ nnoremap <silent> <leader>kw :BufferCloseAllButCurrent<CR>
 "*****************************************************************************
 " Commentary
 "*****************************************************************************
-autocmd FileType html.handlebars setlocal commentstring={{!--\ %s\ --}}
-" autocmd FileType typescriptreact setlocal commentstring={/*\ %s\ --}}
+" autocmd FileType html.handlebars setlocal commentstring={{!--\ %s\ --}}
 
 
 "*****************************************************************************

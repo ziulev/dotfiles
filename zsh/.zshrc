@@ -88,7 +88,7 @@ function cdf() { # short for `cdfinder`
 	cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
 }
 
-export UPDATE_ZSH_DAYS=1
+export UPDATE_ZSH_DAYS=7
 
 source $ZSH/oh-my-zsh.sh
 
@@ -98,7 +98,7 @@ source $ZSH/oh-my-zsh.sh
 if [ -f ${HOME}/.zplug/init.zsh ]; then
 
   source ${HOME}/.zplug/init.zsh
-  zplug "chrissicool/zsh-256color" 
+  # zplug "chrissicool/zsh-256color" 
 
   zplug "zsh-users/zsh-completions",              defer:0
   zplug "zsh-users/zsh-autosuggestions",          defer:2, on:"zsh-users/zsh-completions"

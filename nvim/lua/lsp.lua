@@ -3,6 +3,38 @@ local completion = require'completion'
 local configs = require'lspconfig/configs'
 local util = require'lspconfig/util'
 
+DATA_PATH = vim.fn.stdpath('data')
+
+local custom_on_attach = function()
+  require'lsp_signature'.on_attach() -- TODO: Check. Looks like doesn't work
+  completion.on_attach()
+end
+
+require'lspinstall'.setup()
+
+
+-------------------------------------------------------------------
+-- LSP install
+-------------------------------------------------------------------
+local function setup_servers()
+  require'lspinstall'.setup()
+  local servers = require'lspinstall'.installed_servers()
+  for _, server in pairs(servers) do
+    require'lspconfig'[server].setup{
+      on_attach=custom_on_attach,
+    }
+  end
+end
+
+setup_servers()
+
+-- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
+require'lspinstall'.post_install_hook = function ()
+  setup_servers() -- reload installed servers
+  vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
+end
+
+
 -------------------------------------------------------------------
 -- GENERAL
 -------------------------------------------------------------------
@@ -19,7 +51,7 @@ local shellcheck = {
   lintFormats = {'%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m'}
 }
 lspconfig.efm.setup {
-  on_attach=completion.on_attach,
+  on_attach=custom_on_attach,
   filetypes = {"lua", "javascriptreact", "javascript", "sh", "html", "css", "json", "yaml", "markdown"},
   settings = {
     rootMakers = {".git/"},
@@ -34,82 +66,16 @@ lspconfig.efm.setup {
 
 
 -------------------------------------------------------------------
--- Flow
--------------------------------------------------------------------
-lspconfig.flow.setup {
-  on_attach=completion.on_attach,
-}
-
--------------------------------------------------------------------
--- HTML
--------------------------------------------------------------------
---Enable (broadcasting) snippet capability for completion
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-lspconfig.html.setup {
-  capabilities = capabilities,
-  on_attach=completion.on_attach,
-}
-
--------------------------------------------------------------------
--- javascript, typescript
--------------------------------------------------------------------
-lspconfig.tsserver.setup {
-  on_attach=completion.on_attach,
-  settings = {documentFormatting = false}
-}
-
--------------------------------------------------------------------
--- CSS
--------------------------------------------------------------------
-lspconfig.cssls.setup {
-  on_attach=completion.on_attach,
-}
-
--------------------------------------------------------------------
--- JSON
--------------------------------------------------------------------
--- npm install -g vscode-json-languageserver
-lspconfig.jsonls.setup {
-  commands = {
-    Format = {
-      function()
-        vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
-      end
-    }
-  },
-  on_attach=completion.on_attach,
-}
-
--------------------------------------------------------------------
--- VIM
--------------------------------------------------------------------
--- npm install -g vim-language-server
-lspconfig.vimls.setup {
-  on_attach=completion.on_attach,
-}
-
--------------------------------------------------------------------
 -- Ember
 -------------------------------------------------------------------
-configs.els = {
+configs.ember = {
   default_config = {
-    cmd = {'ember-language-server', '--stdio'},
+    cmd = {'/usr/local/lib/node_modules/@lifeart/ember-language-server/bin/ember-language-server.js', '--stdio'},
     filetypes = {'handlebars', 'html.handlebars'},
     root_dir = util.root_pattern('package.json', '.git')
   }
 }
-lspconfig.els.setup {
-  on_attach = completion.on_attach,
-}
-
-
--------------------------------------------------------------------
--- Ember
--------------------------------------------------------------------
--- npm install -g yaml-language-server
-lspconfig.yamlls.setup{
-  -- on_attach = require'lsp'.common_on_attach,
+lspconfig.ember.setup {
+  on_attach=custom_on_attach,
 }
 

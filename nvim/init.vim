@@ -7,14 +7,12 @@ lua require('plugins')
 "*****************************************************************************
 "" Basic Setup
 "*****************************************************************************"
-" Encoding
+" " Encoding
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8
 " Fix backspace indent
 set backspace=indent,eol,start
-" Disable backspace for insert mode
-" set backspace=indent
 " Tabs. May be overridden by autocmd rules
 set softtabstop=0
 set expandtab
@@ -35,50 +33,31 @@ set fileformats=unix,dos,mac
 set clipboard=unnamed
 set noswapfile
 " Keep cursor centered vertically on the screen
-" let &scrolloff=999-&scrolloff
 let &scrolloff=10
 syntax on
 syntax sync fromstart
 set ruler              			            " Show the cursor position all the time
 set number
-" set relativenumber
 set showtabline=2
-set background=dark
 set list
 set listchars=tab:\ \ ┊,extends:…,precedes:…,space:·
 let no_buffers_menu=1
-let g:onedark_termcolors=16
-let g:onedark_terminal_italics=1
-colorscheme onedark
-" let g:onedark_color_overrides = {
-" \ "black": {"gui": "#2F343F", "cterm": "235", "cterm16": "0" },
-" \ "purple": { "gui": "#C678DF", "cterm": "170", "cterm16": "5" }
-" \}
-if (empty($TMUX))
-  if (has("nvim"))
-    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-endif
-if (has("termguicolors"))
- set termguicolors
-endif
 " Better display for messages
-set cmdheight=2
-set pumheight=10                        " Makes popup menu smaller
-set signcolumn=yes                      " Always show the signcolumn, otherwise it would shift the text each time
-set updatetime=100                      " Faster completion
-set timeoutlen=500                      " By default timeoutlen is 1000 ms
-set noshowmode                          " We don't need to see things like -- INSERT -- anymore
-set nobackup                            " This is recommended by coc
-set nowritebackup                       " This is recommended by coc
+" set cmdheight=2
+" set pumheight=10                        " Makes popup menu smaller
+" set signcolumn=yes                      " Always show the signcolumn, otherwise it would shift the text each time
+" set updatetime=100                      " Faster completion
+" set timeoutlen=500                      " By default timeoutlen is 1000 ms
+" set noshowmode                          " We don't need to see things like -- INSERT -- anymore
+" set nobackup                            " This is recommended by coc
+" set nowritebackup                       " This is recommended by coc
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
-set ttyfast
+" set ttyfast
 set mouse=a
-set modifiable
+" set modifiable
 " Hightlight the current line
 set cursorline
 hi cursorline cterm=none term=none
@@ -92,17 +71,9 @@ if has('persistent_undo')      "check if your vim version supports it
   set undofile                 "turn on the feature
   set undodir=$HOME/.vim/undo  "directory where the undo files will be stored
 endif
-" Fix for search and replace
-" :Ag foo
-" if has('nvim')
-"   tnoremap <a-a> <esc>a
-"   tnoremap <a-b> <esc>b
-"   tnoremap <a-d> <esc>d
-"   tnoremap <a-f> <esc>f
-" endif
-"
-
-
+set background=dark
+set termguicolors
+colorscheme one-nvim
 "*****************************************************************************
 "" Basic mappings
 "*****************************************************************************
@@ -133,21 +104,28 @@ nmap p :pu<CR>
 
 
 "*****************************************************************************
+" Settings
+"*****************************************************************************
+" lua require('settings')
+
+
+"*****************************************************************************
 " Treesitter
 "*****************************************************************************
-" lua require('treesitter-config')
+lua require('treesitter-config')
 
 
 "*****************************************************************************
 " Comment
 "*****************************************************************************
+" nnoremap <leader>c <cmd>lua require('ts_context_commentstring.internal').update_commentstring()<cr>
 lua require('comment-config')
 
 
 "*****************************************************************************
 " Lua language server
 "*****************************************************************************
-lua require('lua-ls')
+" lua require('lua-ls')
 
 
 "*****************************************************************************
@@ -185,15 +163,9 @@ lua require('telescope-config')
 
 
 "*****************************************************************************
-" Colorizer
+" LSPkind
 "*****************************************************************************
-lua require('colorizer-config')
-
-
-"*****************************************************************************
-" lsp signature
-"*****************************************************************************
-lua require('lsp_signature').on_attach {}
+lua require('plugin-lspkind')
 
 
 "*****************************************************************************
@@ -230,6 +202,12 @@ nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 " autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
 lua require('compe-config')
 lua require('lsp')
+
+
+"*****************************************************************************
+" LSP signature
+"*****************************************************************************
+lua require('plugin-lsp-signature')
 
 
 "*****************************************************************************
@@ -296,6 +274,7 @@ noremap <silent> gb :Twiggy<CR>
 " nnoremap <leader>gd :Gvdiff<CR>
 nnoremap gdh :diffget //2<CR>
 nnoremap gdl :diffget //3<CR>
+lua require('plugin-neogit')
 
 
 "*****************************************************************************

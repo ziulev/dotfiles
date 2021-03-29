@@ -26,6 +26,14 @@ else
   brew install efm-langserver
 fi
 
+# Spellchecker for https://github.com/lewis6991/spellsitter.nvim
+if command -v hunspell >/dev/null 2>&1; then
+  echo "[ SKIPPING ] :: $MODULE >> hunspell has been already installed"
+else
+  echo "[ INSTALLING ] :: $MODULE >> hunspell "
+  brew install hunspell 
+fi
+
 # Packer and symlinks
 if command -v nvim >/dev/null 2>&1; then
   PACKER=$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim

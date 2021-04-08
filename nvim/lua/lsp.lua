@@ -6,12 +6,13 @@ local util = require'lspconfig/util'
 DATA_PATH = vim.fn.stdpath('data')
 
 local custom_on_attach = function()
-  require'lsp_signature'.on_attach() -- TODO: Check. Looks like doesn't work
   completion.on_attach()
+  require "lsp_signature".on_attach()
 end
 
 require'lspinstall'.setup()
 
+-- require'lsp_signature'.on_attach() -- TODO: Check. Looks like doesn't work
 
 -------------------------------------------------------------------
 -- LSP install

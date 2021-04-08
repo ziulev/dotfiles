@@ -184,6 +184,8 @@ let g:nvim_tree_width = 40
 let g:nvim_tree_auto_ignore_ft = ['startify', 'dashboard']
 let g:nvim_tree_follow = 1
 lua require('tree-config')
+" autocmd ColorScheme * highlight highlight NvimTreeBg guibg=#FFFFFF
+" autocmd FileType NvimTree setlocal winhighlight=Normal:NvimTreeBg
 
 "*****************************************************************************
 " LSP config

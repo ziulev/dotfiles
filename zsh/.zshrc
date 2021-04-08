@@ -4,6 +4,7 @@ export DOTFILES=$HOME/dev/dotfiles
 
 export ZSH=$HOME/.oh-my-zsh
 export PATH=$HOME/.npm-global/bin:$PATH
+export PATH=~/.npm-global/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/.npm-packages/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH

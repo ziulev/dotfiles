@@ -63,7 +63,7 @@ set cursorline
 hi cursorline cterm=none term=none
 autocmd WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
-highlight CursorLine guibg=#22262b ctermbg=234
+highlight CursorLine guibg=#2f333b ctermbg=234
 " Fix syntax highlight
 syntax sync fromstart
 " Persistent undo
@@ -119,7 +119,8 @@ lua require('treesitter-config')
 " Comment
 "*****************************************************************************
 " nnoremap <leader>c <cmd>lua require('ts_context_commentstring.internal').update_commentstring()<cr>
-lua require('comment-config')
+" lua require('comment-config')
+" nnoremap <leader>c <cmd>lua require('ts_context_commentstring.internal').update_commentstring()<cr>
 
 
 "*****************************************************************************
@@ -149,7 +150,9 @@ nnoremap <silent> <C-n> <cmd>lua require('lspsaga.action').smart_scroll_with_sag
 " scroll up hover doc
 nnoremap <silent> <C-p> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
 " rename
-nnoremap <silent><leader>rn <cmd>lua require('lspsaga.rename').rename()<CR>
+" nnoremap <silent><leader>rn <cmd>lua require('lspsaga.rename').rename()<CR>
+
+nnoremap <silent><leader>rn <cmd>lua vim.lsp.buf.rename()<CR>
 
 
 "*****************************************************************************
@@ -184,8 +187,6 @@ let g:nvim_tree_width = 40
 let g:nvim_tree_auto_ignore_ft = ['startify', 'dashboard']
 let g:nvim_tree_follow = 1
 lua require('tree-config')
-" autocmd ColorScheme * highlight highlight NvimTreeBg guibg=#FFFFFF
-" autocmd FileType NvimTree setlocal winhighlight=Normal:NvimTreeBg
 
 "*****************************************************************************
 " LSP config
@@ -296,13 +297,14 @@ nnoremap <silent> <leader>H :BufferMovePrevious<CR>
 nnoremap <silent> <leader>L :BufferMoveNext<CR>
 " nnoremap <silent> <leader>w :BufferClose<CR>
 nnoremap <silent> <leader>kw :BufferCloseAllButCurrent<CR>
-noremap <leader>w :BufferClose<CR>
+noremap <leader>w :BufferWipeout<CR>
+" noremap <leader>w :bd<CR>
 
 
 "*****************************************************************************
 " Commentary
 "*****************************************************************************
-" autocmd FileType html.handlebars setlocal commentstring={{!--\ %s\ --}}
+autocmd FileType html.handlebars setlocal commentstring={{!--\ %s\ --}}
 
 
 "*****************************************************************************

@@ -70,7 +70,13 @@ return require('packer').startup(function(use)
 
   -- Treesitter
   use 'nvim-treesitter/nvim-treesitter'
-  use 'JoosepAlviste/nvim-ts-context-commentstring'
+
+  use {
+    'JoosepAlviste/nvim-ts-context-commentstring',
+    requires = {
+      'tpope/vim-commentary'
+    }
+  }
   use 'windwp/nvim-ts-autotag'
   use {
     'lukas-reineke/indent-blankline.nvim',
@@ -92,7 +98,8 @@ return require('packer').startup(function(use)
   use 'f-person/git-blame.nvim'
 
   -- General Plugins
-  use 'terrortylor/nvim-comment'
+  -- use 'chaoren/vim-wordmotion'
+  use 'justinmk/vim-sneak'
   use 'yuttie/comfortable-motion.vim'
   use 'airblade/vim-rooter'
   use 'tpope/vim-surround'

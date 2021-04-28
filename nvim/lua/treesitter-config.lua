@@ -3,6 +3,16 @@ require'nvim-treesitter.configs'.setup {
   highlight = {enable = true},
   indent = {enable = true},
   autotag = {enable = true},
+  context_commentstring = {
+    enable = true,
+    config = {
+      -- ['html.handlebars'] = '{{!-- %s --}}'
+      -- ['html.handlebars'] = {
+      --   element = '{{!-- %s --}}',
+      --   text_interpolation = '{{!-- %s --}}',
+      -- },
+    },
+  }
   -- rainbow = {enable = true},
   -- context_commentstring = {enable = true},
 }

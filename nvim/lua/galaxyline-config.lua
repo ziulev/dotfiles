@@ -47,7 +47,7 @@ section.left[2] = {
   GitBranch = {
     provider = 'GitBranch',
     condition = condition.check_git_workspace,
-    separator = '',
+    separator = ' ',
     separator_highlight = {'NONE', colors.bg},
     highlight = {colors.grey, colors.bg}
   }
@@ -81,7 +81,48 @@ section.left[5] = {
 }
 
 
+section.right[0] = {
+  FileIcon = {
+    provider = "FileIcon",
+    condition = buffer_not_empty,
+    highlight = {require("galaxyline.provider_fileinfo").get_file_icon_color, colors.line_bg}
+  }
+}
+
+
+local function wide_enough()
+  local squeeze_width = vim.fn.winwidth(0)
+  if squeeze_width > 80 then return true end
+  return false
+end
+
 section.right[1] = {
+  FileName = {
+    provider = function()
+      if not buffer_not_empty() then return '' end
+      local fname
+      if wide_enough() then
+        fname = vim.fn.fnamemodify(vim.fn.expand '%', ':~:.')
+      else
+        fname = vim.fn.expand '%:t'
+      end
+      if #fname == 0 then return '' end
+      if vim.bo.readonly then
+        fname = fname .. ' ' .. '[readonly]'
+      end
+      if vim.bo.modified then
+        fname = fname .. ' ' .. '[modified]'
+      end
+      return ' ' .. fname .. ' '
+    end,
+    highlight = {colors.fg, colors.bg},
+    separator = '',
+    separator_highlight = 'GalaxyViModeInv',
+  },
+}
+
+
+section.right[2] = {
   DiagnosticError = {
     provider = 'DiagnosticError',
     icon = '  ',
@@ -89,7 +130,7 @@ section.right[1] = {
   }
 }
 
-section.right[2] = {
+section.right[3] = {
   DiagnosticWarn = {
     provider = 'DiagnosticWarn',
     icon = '  ',
@@ -97,7 +138,7 @@ section.right[2] = {
   }
 }
 
-section.right[3] = {
+section.right[4] = {
   DiagnosticHint = {
     provider = 'DiagnosticHint',
     icon = '  ',
@@ -105,7 +146,7 @@ section.right[3] = {
   }
 }
 
-section.right[4] = {
+section.right[5] = {
   DiagnosticInfo = {
     provider = 'DiagnosticInfo',
     icon = '  ',
@@ -113,7 +154,7 @@ section.right[4] = {
   }
 }
 
-section.right[8] = {
+section.right[6] = {
   Tabstop = {
     provider = function()
       return "Spaces: " .. vim.api.nvim_buf_get_option(0, "tabstop") .. " "
@@ -125,7 +166,7 @@ section.right[8] = {
   }
 }
 
-section.right[11] = {
+section.right[7] = {
   ShowLspClient = {
     provider = 'GetLspClient',
     condition = function()
@@ -138,7 +179,7 @@ section.right[11] = {
   }
 }
 
-section.right[12] = {
+section.right[8] = {
   PerCent = {
     provider = 'LinePercent',
     separator = ' ',

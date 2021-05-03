@@ -1,5 +1,5 @@
 # dotfiles directory
-dotfiles_dir=~/dev/dotfiles
+dotfiles_dir=~/Developer/dotfiles
 
 # Install
 if tmux -V >/dev/null 2>&1; then

@@ -6,7 +6,7 @@ windows:
   panes:
     -
 - window_name: dotfiles
-  start_directory: ~/dev/dotfiles
+  start_directory: ~/Developer/dotfiles
   layout: tiled
   panes:
     -

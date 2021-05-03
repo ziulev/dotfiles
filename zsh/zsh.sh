@@ -1,5 +1,5 @@
 # dotfiles directory
-dotfiles_dir=~/dev/dotfiles
+dotfiles_dir=~/Developer/dotfiles
 
 # Install
 if [[ -f "$HOME/.oh-my-zsh" ]]; then

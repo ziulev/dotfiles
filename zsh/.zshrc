@@ -1,6 +1,6 @@
 ZSH_DISABLE_COMPFIX=true
 
-export DOTFILES=$HOME/dev/dotfiles
+export DOTFILES=$HOME/Developer/dotfiles
 
 export ZSH=$HOME/.oh-my-zsh
 export PATH=$HOME/.npm-global/bin:$PATH
@@ -32,6 +32,8 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 PATH="/usr/local/bin:$PATH"
 
 export TERM="xterm-256color"
+
+ZSH_DISABLE_COMPFIX="true"
 
 # --------------------------------------------------------------------------------------------------
 # Aliases

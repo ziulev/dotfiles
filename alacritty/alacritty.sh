@@ -1,8 +1,8 @@
 # dotfiles directory
-dotfiles_dir=~/dev/dotfiles
+dotfiles_dir=~/Developer/dotfiles
 
 # Install
-if brew list --cask alacritty >/dev/null 2>&1; then
+if brew list --cask alacritty >/Developer/null 2>&1; then
   echo "Alacritty has been already installed, skipping installation"
 else
   brew install --cask alacritty

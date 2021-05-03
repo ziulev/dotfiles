@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # dotfiles directory
-DOTFILES=~/dev/dotfiles
+DOTFILES=~/Developer/dotfiles
 MODULE="NVIM"
 
 # Install
@@ -66,7 +66,7 @@ fi
 
 
 # rm -f ~/.config/nvim/lua
-# ln -s ~/dev/dotfiles/vim/lua ~/.config/nvim/lua
+# ln -s ~/Developer/dotfiles/vim/lua ~/.config/nvim/lua
 
 # Symlinks for coc-settings
 # rm -f ~/.config/nvim/coc-settings.json

@@ -1,7 +1,7 @@
 session_name: Session
 windows:
-- window_name: dev
-  start_directory: ~/dev
+- window_name: Developer
+  start_directory: ~/Developer
   layout: tiled
   panes:
     -

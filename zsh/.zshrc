@@ -170,6 +170,8 @@ then
   # t
 fi
 
-export HOMEBREW_GITHUB_API_TOKEN=13c84bc0adbc5fe4181314a95c8e62efc1fae2b0
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/bit bit
+
+cd ~/Developer
+clear

@@ -16,7 +16,7 @@
   "editor.fontFamily": "Iosevka",
   "editor.fontSize": 14,
   "workbench.activityBar.visible": false,
-  "workbench.colorTheme": "Plastic",
+  "workbench.colorTheme": "GitHub Dark Dimmed",
   "editor.minimap.enabled": false,
   "city-lights-icons-vsc.hidesExplorerArrows": true,
   "cSpell.userWords": [
@@ -102,6 +102,7 @@
     "ng",
     "ngsw",
     "notbarber",
+    "notelion",
     "npmrc",
     "opentype",
     "os",
@@ -133,6 +134,7 @@
     "stylesheets",
     "submenu",
     "sufix",
+    "supabase",
     "tabindex",
     "tabset",
     "targetted",
@@ -311,7 +313,6 @@
   ],
   "emmet.showExpandedAbbreviation": "never",
   "emmet.showAbbreviationSuggestions": false,
-  "window.zoomLevel": 0,
   "vim.camelCaseMotion.enable": true,
   "vim.changeWordIncludesWhitespace": true,
   "vim.debug.silent": true,
@@ -326,5 +327,11 @@
   "todo-tree.tree.showScanModeButton": false,
   "todo-tree.highlights.enabled": true,
   "rust-client.rustupPath": "$HOME/.cargo/bin/rustup",
-  "vscode-neovim.neovimPath": "/usr/local/bin/nvim"
+  "vscode-neovim.neovimPath": "/usr/local/bin/nvim",
+  "editor.rulers": [
+    80
+  ],
+  "search.exclude": {
+    "**/node_modules": false
+  },
 }
